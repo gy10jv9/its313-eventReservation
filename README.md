@@ -8,11 +8,11 @@ Download the project:
 
 Frontend:
   1.  using cmd, run/install the following inside "frontend-react" folder:
-    npm i
+    a. npm i
 
 Backend:
   1.  using cmd, run/install the following inside "backend-express" folder:
-    npm i
+    a. npm i
 
 Commit:
   1. note: do not commit in the "main" branch
