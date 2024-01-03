@@ -1,0 +1,48 @@
+.cardEvents {
+    width: 100%
+}
+.container-fieldName {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.fldName {
+    flex: 1 0 1em;
+}
+.fldName.evntTitle {
+    flex: 4 0 1em;
+}
+.event-primaryInformartion {
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr 1fr;
+}
+.event-title {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.event-reserver {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.event-startDate {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+.event-endDate {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+.event-startTime {
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+.event-endTime {
+    grid-column: 3/4;
+    grid-row: 2/3;
+}
+.event-approvalStatus {
+    grid-column: 4/5;
+    grid-row: 1/3;
+    display: flex;
+    align-items: center;
+}

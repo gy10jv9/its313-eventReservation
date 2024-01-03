@@ -12,7 +12,7 @@ const CalendarMain = () => {
             <FullCalendar
                 plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin]}
                 initialView="dayGridMonth"
-                height="100vh"
+                height={"auto"}
             />
         </div>
     );

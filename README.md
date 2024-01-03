@@ -22,6 +22,7 @@ Backend:
     npm i -g nodemon (optional)
     npm i mysql
     npm i body-parser
+    npm i cors
 
 Commit:
   1. note: do not commit in the "main" branch
