@@ -9,17 +9,19 @@ Download the project:
 Frontend:
   1.  using cmd, run/install the following inside "frontend-react" folder:
      
-     npm i
-     npm i fullcalendar
-     npm install --save @fullcalendar/react @fullcalendar/daygrid @fullcalendar/interaction @fullcalendar/timegrid @fullcalendar/list
-     npm i bootstrap
-     npm i react-bootstrap
-
+    npm i
+    npm i fullcalendar
+    npm install --save @fullcalendar/react @fullcalendar/daygrid @fullcalendar/interaction @fullcalendar/timegrid @fullcalendar/list
+    npm i bootstrap
+    npm i react-bootstrap
 
 Backend:
   1.  using cmd, run/install the following inside "backend-express" folder:
      
-     npm i
+    npm i express
+    npm i -g nodemon (optional)
+    npm i mysql
+    npm i body-parser
 
 Commit:
   1. note: do not commit in the "main" branch
