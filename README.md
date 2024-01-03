@@ -15,7 +15,6 @@ Frontend:
     npm i bootstrap
     npm i react-bootstrap
 
-
 Backend:
   1.  using cmd, run/install the following inside "backend-express" folder:
      
