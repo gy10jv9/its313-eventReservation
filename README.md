@@ -8,13 +8,6 @@ Download the project:
 
 Frontend:
   1.  using cmd, run/install the following inside "frontend-react" folder:
-<<<<<<< Updated upstream
-    npm i
-
-Backend:
-  1.  using cmd, run/install the following inside "backend-express" folder:
-    npm i
-=======
      
     npm i
     npm i fullcalendar
@@ -30,7 +23,6 @@ Backend:
     npm i -g nodemon (optional)
     npm i mysql
     npm i body-parser
->>>>>>> Stashed changes
 
 Commit:
   1. note: do not commit in the "main" branch
