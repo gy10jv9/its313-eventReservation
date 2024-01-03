@@ -1,11 +1,17 @@
 const express = require('express');
-const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+const app = express();
+const port = 3001;
+
+//routers
+const routerEvents =  require("./routes/Events")
+
+app.get('/', function(req, res) {
+    res.send('Hello World!');
 });
 
-const port = 3001;
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+app.use("/events", routerEvents);
+
+app.listen(port, function() {
+    console.log(`App is listening on port ${port}`);
 });

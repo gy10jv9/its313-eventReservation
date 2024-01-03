@@ -1,15 +1,15 @@
 import CalendarMain from "./components/CalendarMain";
-import EventsPanel from "./components/EventsPanel";
+import Events from "./components/Events";
 import "./App.css"
 
 function App() {
     return (
         <div className="d-flex flex-row">
-            <div id="eventsPanel">
-                <EventsPanel/>
+            <div id="panel-calendar">
+                <CalendarMain/>
             </div>
             <div className='flex-grow-1'>
-                <CalendarMain/>
+                <Events/>
             </div>
         </div>
     );
