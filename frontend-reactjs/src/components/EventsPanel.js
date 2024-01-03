@@ -12,7 +12,7 @@ const EventsPanel = () => {
 
     return (
         <div>
-            <h1 className='container'> Event Reservations </h1>
+            <h1 className='container'> Bookings </h1>
             <div className="card container">
                 <div className="card-body">
                     <div className='container-cardHeader d-flex flex-row'>
