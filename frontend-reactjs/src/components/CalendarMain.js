@@ -13,6 +13,10 @@ const CalendarMain = () => {
                 plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin]}
                 initialView="dayGridMonth"
                 height={"auto"}
+
+                dateClick={(date) => {
+                    console.log("Clicked date:", date.dateStr);
+                }}
             />
         </div>
     );
