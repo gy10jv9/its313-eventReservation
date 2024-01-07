@@ -1,6 +1,6 @@
 Set-up GITHUB for Desktop:
-  1. install GITHUB Desktop (https://desktop.github.com/)
-  2. install git for WINDOWS (https://gitforwindows.org/)
+  1.  install GITHUB Desktop (https://desktop.github.com/)
+  2.  install git for WINDOWS (https://gitforwindows.org/)
   3.  install node (https://nodejs.org/en)
 
 Download the project:
@@ -10,7 +10,6 @@ Download the project:
 Global modules:
   1. npm i react
   2. npm install -g npm-check-updates
-
 
 Frontend:
   1.  using cmd, run/install the following inside "frontend-react" folder:
