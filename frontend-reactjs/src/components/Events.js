@@ -8,7 +8,6 @@ const Events = () => {
     const [events, setEvents] = useState([])
 
     const toggleCardContent = (eventId) => {
-        console.log(eventId)
         setEvents(events.map(event =>
             event.eId === eventId ? { ...event, isExpanded: !event.isExpanded } : event
         ));
@@ -40,9 +39,9 @@ const Events = () => {
                     <div className="card-body">
                         <div className='container-cardHeader d-flex flex-row' onClick={() => toggleCardContent(event.eId)}>
                             <div className='flex-grow-1 event-primaryInformartion'>
-                                <h5 className="card-title event-title"> {event.title} </h5>
+                                <h5 className="card-title event-title"> {event.eventTitle} </h5>
                                 <h6 className="card-subtitle mb-2 text-muted event-reserver"> Event Reserver </h6>
-                                <div className='event-startDate'> start date </div>
+                                <div className='event-startDate'> {new Date(event.dateStart).toISOString().slice(0, 10)} </div>
                                 <div className='event-endDate'> end date </div>
                                 <div className='event-startTime'> start time </div>
                                 <div className='event-endtTime'> end time </div>
