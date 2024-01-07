@@ -8,16 +8,14 @@ Download the project:
   2. choose "clone repository" and customize the directory
 
 Global modules:
-  1.  npm react
-  2.  npm i -g nodemon (optional)
-  3.  npm install -g npm-check-updates
+  1. npm i react
+  2. npm install -g npm-check-updates
 
 Frontend:
   1.  using cmd, run/install the following inside "frontend-react" folder:
      
     ncu -u
     npm i
-
 
 Backend:
   1.  using cmd, run/install the following inside "backend-express" folder:
