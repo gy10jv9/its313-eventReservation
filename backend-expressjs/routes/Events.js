@@ -16,12 +16,12 @@ router.get('/', function(req, res) {
 router.post('/api/getEvents', (req, res) => {
     const sql = 'SELECT * FROM tblevents';
     db.query(sql, (err, results) => {
-      if (err) {
-        console.error('Error retrieving users:', err);
-        res.status(500).json({ error: 'Internal Server Error' });
-        return;
-      }
-      res.json(results);
+        if (err) {
+            console.error('Error retrieving users:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+            return;
+        }
+        res.json(results);
     });
 });
 
