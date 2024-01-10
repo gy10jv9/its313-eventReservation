@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Collapse, Button } from 'react-bootstrap'
-import SearchBar from './SearchBar';
+import SearchBox from './SearchBox';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Events.css'
 
@@ -29,7 +29,7 @@ const Events = () => {
     return (
         <div>
             <h1 className='container'> Event Reservations </h1>
-            <SearchBar/>
+            <SearchBox/>
             <div className='container-fieldName'>
                 <div className='fldName evntTitle'> Event Title </div>
                 <div className='fldName'> Location </div>
