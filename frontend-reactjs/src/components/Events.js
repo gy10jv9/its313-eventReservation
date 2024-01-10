@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Collapse, Button } from 'react-bootstrap'
+import SearchBar from './SearchBar';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Events.css'
 
@@ -28,8 +29,10 @@ const Events = () => {
     return (
         <div>
             <h1 className='container'> Event Reservations </h1>
+            <SearchBar/>
             <div className='container-fieldName'>
                 <div className='fldName evntTitle'> Event Title </div>
+                <div className='fldName'> Location </div>
                 <div className='fldName'> Date Start/End </div>
                 <div className='fldName'> Time Start/End </div>
                 <div className='fldName'> Approval Status </div>
@@ -41,6 +44,7 @@ const Events = () => {
                             <div className='flex-grow-1 event-primaryInformartion'>
                                 <h5 className="card-title event-title"> {event.eventTitle} </h5>
                                 <h6 className="card-subtitle mb-2 text-muted event-reserver"> Event Reserver </h6>
+                                <div className='event-location'> {event.location} </div>
                                 <div className='event-startDate'> {new Date(event.dateStart).toISOString().slice(0, 10)} </div>
                                 <div className='event-endDate'> end date </div>
                                 <div className='event-startTime'> start time </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2023 at 10:55 PM
+-- Generation Time: Jan 09, 2024 at 12:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dbppgs`
+-- Database: `db_ppgs`
 --
 
 -- --------------------------------------------------------
@@ -29,22 +29,31 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tblevents` (
   `eId` int(11) NOT NULL,
-  `title` varchar(50) NOT NULL,
-  `dateStart` int(11) NOT NULL,
-  `dateEnd` int(11) NOT NULL,
-  `timeStart` int(11) NOT NULL,
-  `timeEnd` int(11) NOT NULL,
+  `eventTitle` varchar(200) NOT NULL,
+  `reserverName` varchar(200) NOT NULL,
+  `reserverEmail` varchar(200) NOT NULL,
+  `dateStart` date NOT NULL,
+  `dateEnd` date NOT NULL,
+  `timeStart` time NOT NULL,
+  `timeEnd` time NOT NULL,
   `numParticipants` int(11) NOT NULL,
-  `withAircon` int(11) NOT NULL,
-  `withSoundSys` int(11) NOT NULL,
-  `withLights` int(11) NOT NULL,
+  `withAircon` tinyint(1) NOT NULL,
+  `withLights` tinyint(1) NOT NULL,
   `numTablesLong` int(11) NOT NULL,
   `numTablesRound` int(11) NOT NULL,
   `numChairs` int(11) NOT NULL,
-  `otherEquipments` int(11) NOT NULL,
-  `instructions` int(11) NOT NULL,
-  `bookingStatus` int(11) NOT NULL
+  `otherEquipments` varchar(2000) NOT NULL,
+  `instructions` varchar(2000) NOT NULL,
+  `bookingStatus` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblevents`
+--
+
+INSERT INTO `tblevents` (`eId`, `eventTitle`, `reserverName`, `reserverEmail`, `dateStart`, `dateEnd`, `timeStart`, `timeEnd`, `numParticipants`, `withAircon`, `withLights`, `numTablesLong`, `numTablesRound`, `numChairs`, `otherEquipments`, `instructions`, `bookingStatus`) VALUES
+(1, 'Event Sample 1', 'Name Sample 1', 'Email Sample 1', '2024-01-01', '2024-01-02', '08:00:00', '12:00:00', 100, 0, 0, 1, 0, 100, '', '', 'pending'),
+(2, 'Event Sample 2', 'Name Sample 2', 'Email Sample 2', '2024-01-02', '2024-01-02', '08:00:00', '12:00:00', 100, 0, 0, 1, 0, 100, '', '', 'pending');
 
 --
 -- Indexes for dumped tables
@@ -64,7 +73,7 @@ ALTER TABLE `tblevents`
 -- AUTO_INCREMENT for table `tblevents`
 --
 ALTER TABLE `tblevents`
-  MODIFY `eId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `eId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
