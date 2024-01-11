@@ -1,6 +1,7 @@
 import CalendarMain from "./components/CalendarMain";
 import Events from "./components/Events";
 import ResrvForm_Modal from "./components/ResrvForm-Modal";
+import SearchBox from "./components/SearchBox";
 import "./App.css"
 import "./fonts.css"
 
