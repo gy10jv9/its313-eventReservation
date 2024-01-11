@@ -12,7 +12,7 @@ function App() {
                 <CalendarMain/>
                 <ResrvForm_Modal/>
             </div>
-            <div className='flex-grow-1'>
+            <div className='flex-grow-1' id="panel-events">
                 <Events/>
             </div>
         </div>
