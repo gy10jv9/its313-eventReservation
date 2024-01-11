@@ -1,8 +1,15 @@
 * {
-  font-family: "Poppins Regular";
+    font-family: "Poppins Regular";
 }
-
 #panel-calendar {
-  width: 24vw;
-  height: 100vh;
+    width: 20vw;
+    height: 100vh;
+    padding: 8px;
+    background-color: #95CBD7;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#panel-events {
+    background-color: #F7F7F7;
 }

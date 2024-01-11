@@ -1,6 +1,34 @@
-.fc-daygrid-day-events {
-    display: none;
-}
-.fc-daygrid-day-number {
+.calendar-main {
+    border-radius: 16px;
+    padding: 4%;
     font-size: 12px;
+    background-color: #CBEBF2;
+    border: none;
+}
+.react-calendar button {
+    border-radius: 50%;
+}
+.react-calendar__tile--now {
+  background: #88A634;
+  color: white;
+}
+.react-calendar__tile--active {
+  background: #394616;
+  color: white;
+}
+.react-calendar__tile:enabled:hover {
+  background-color: #cfdbae;
+}
+.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
+    background: #394616;
+}
+abbr[title]
+{
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    cursor: none;
+    text-decoration-skip-ink: none;
+}
+.react-calendar__month-view__weekdays {
+    font-weight: normal;
 }

@@ -1,24 +1,17 @@
-import React from 'react';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import listPlugin from '@fullcalendar/list';
+import React, { useState } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 import "./CalendarMain.css"
 
 const CalendarMain = () => {
     return (
-        <div>
-            <FullCalendar
-                plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin]}
-                initialView="dayGridMonth"
-                height={"auto"}
-
-                dateClick={(date) => {
-                    console.log("Clicked date:", date.dateStr);
-                }}
+        <div className="calendar-container">
+            <Calendar
+                className={"calendar-main"}
+                calendarType='US'
             />
         </div>
+
     );
 }
 

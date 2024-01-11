@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import "./ResrvForm-Modal.css"
 
 const ResrvForm_Modal = () => {
     const [show, setShow] = useState(false);
@@ -9,8 +10,8 @@ const ResrvForm_Modal = () => {
 
     return (
         <div>
-            <Button variant="primary" onClick={handleShow}>
-                Launch demo modal
+            <Button variant="primary" onClick={handleShow} id='resrv-button'>
+                Reserve Event
             </Button> 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
