@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'
 
 const SearchBox = (props) => {
     const [query, setQuery] = useState("") // for searchbox
