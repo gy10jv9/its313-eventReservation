@@ -1,6 +1,7 @@
 #resrv-button {
     width: 100%;
-    background-color: #F37856;
-    color: white;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    color: black;
     border: none;
 }
