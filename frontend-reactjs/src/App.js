@@ -22,7 +22,7 @@ function App() {
                 <ResrvForm_Modal mouseLoc={mouseLoc_ref}/>
             </div>
             <div className='flex-grow-1' id="panel-events">
-                <Events/>
+                <Events mouseLoc={mouseLoc_ref}/>
             </div>
         </div>
     );

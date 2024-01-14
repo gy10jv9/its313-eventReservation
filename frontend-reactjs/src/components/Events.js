@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import { Collapse, Button } from 'react-bootstrap'
 import SearchBox from './SearchBox';
@@ -6,9 +6,14 @@ import EventCard from './EventCard';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Events.css'
 
-const Events = () => {
+const Events = (props) => {
     const [events, setEvents] = useState([])
     const [searchQuery, setSearchQuery] = useState("") // halin sa searchbox ang data
+    const { mouseLoc } = props // halin sa parent nga mouse location
+
+    const handleMouseMove = (event) => {
+        //console.log(`test ${mouseLoc.current.x} ${mouseLoc.current.y}`)
+    }
 
     console.log(`SearchQuery : ${searchQuery}`) // test lang kng gagana
 
@@ -40,12 +45,12 @@ const Events = () => {
     }, []);
 
     return (
-        <div>
+        <div onMouseMove={handleMouseMove}>
             <div id='header-container'>
                 <h1 className='container'> Event Reservations </h1>
                 <SearchBox onStateChange={handle_sBoxStateChange}/>
             </div>
-            <div className="card container" style={{border: "none"}}>
+            <div className="card container" style={{border: "none", boxShadow: "none"}}>
                     <div className="card-body">
                         <div className='container-cardHeader d-flex flex-row'>
                             <div className='flex-grow-1 event-primaryInformartion'>
@@ -65,6 +70,7 @@ const Events = () => {
                     key={event.eId}
                     event={event}
                     toggleCardContent={toggleCardContent}
+                    mouseLoc={mouseLoc}
                 />
             ))}
             
