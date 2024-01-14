@@ -41,15 +41,23 @@ const Events = () => {
 
     return (
         <div>
-            <h1 className='container'> Event Reservations </h1>
-            <SearchBox onStateChange={handle_sBoxStateChange}/>
-            <div className='container-fieldName'>
-                <div className='fldName evntTitle'> Event Title </div>
-                <div className='fldName'> Location </div>
-                <div className='fldName'> Date Start/End </div>
-                <div className='fldName'> Time Start/End </div>
-                <div className='fldName'> Approval Status </div>
+            <div id='header-container'>
+                <h1 className='container'> Event Reservations </h1>
+                <SearchBox onStateChange={handle_sBoxStateChange}/>
             </div>
+            <div className="card container" style={{border: "none"}}>
+                    <div className="card-body">
+                        <div className='container-cardHeader d-flex flex-row'>
+                            <div className='flex-grow-1 event-primaryInformartion'>
+                                <h5 className="card-title event-title"> Event Title </h5>
+                                <div className='event-location'> Location </div>
+                                <div className='event-startDate'> Date </div>
+                                <div className='event-startTime'> Time </div>
+                                <div className='event-approvalStatus'> Approval Status </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             {/* event cards */}
             {search(events).map(event => ( // gagamit sng search filter nga function sa babaw

@@ -10,5 +10,6 @@
     flex-direction: column;
 }
 #panel-events {
+    padding: 0 64px 0 64px;
     background-color: white;
 }
