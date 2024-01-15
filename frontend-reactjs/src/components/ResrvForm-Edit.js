@@ -113,16 +113,11 @@ const ResrvForm_Edit = (props) => {
                 <div className='line-bot'></div>
                 <div className="lScatter" ref={lScatter} style={{width: "300px", height: "300px", background: "radial-gradient(circle, rgba(149,198,201, 0.75) 0%, rgba(225, 225, 225, 0) 80%)"}}></div>   
             </Button> 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal Heading</Modal.Title>
-                </Modal.Header>
-
+            <Modal show={show} onHide={handleClose} size="lg">
                 <Modal.Body>    
-                
                     <div className="container mt-5">
                       <div className="row justify-content-center">
-                        <div className="col-md-8">
+                        <div className="col-md-12">
                           <div className="card">
                             <div className="card-body">
                               <h2 className="card-title text-center mb-4">Event Reservation Booking</h2>
@@ -142,6 +137,18 @@ const ResrvForm_Edit = (props) => {
 
                                 <div className="form-group">
                                   <label>Name</label>
+                                  <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Enter your name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    required
+                                  />
+                                </div>
+
+                                <div className="form-group">
+                                  <label>Location</label>
                                   <input
                                     type="text"
                                     className="form-control"

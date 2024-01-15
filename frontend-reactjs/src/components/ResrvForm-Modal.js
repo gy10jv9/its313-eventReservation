@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import gsap from 'gsap';
+import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./ResrvForm-Modal.css"
+import { event } from 'jquery';
 
 const ResrvForm_Modal = (props) => {
     const { mouseLoc } = props // halin sa parent nga mouse location
@@ -31,6 +33,22 @@ const ResrvForm_Modal = (props) => {
     const handleShow = () => setShow(true);
 
     // para sa event - details
+    const [event, setEvent] = useState({
+        title: "",
+        name: "",
+        location: "",
+        email: "",
+        dateStart: "",
+        dateEnd: "",
+        timeStart: "",
+        timeEnd: "",
+        participants: 0,
+        withAircon: false,
+        withLights: 0,
+
+    })
+    const [withAircon, setWithAircon] = useState(false)
+
     const [eventTitle, setEventTitle] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -77,25 +95,22 @@ const ResrvForm_Modal = (props) => {
         })
     }, [])
 
+    const handleChange = (e) => {
+        setEvent({ ...event, [e.target.name]: e.target.value });
+        console.log(event) // print the name and email on change
+    };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitted:', {
-      eventTitle,
-      name,
-      email,
-      startDate,
-      endDate,
-      startTime,
-      endTime,
-      participants,
-      withAircon,
-      withSoundSystem,
-      numTablesLong,
-      numTablesRound,
-      numChairs,
-      otherEquipment,
-      instructions,
-    });
+
+    try {
+        const response = await axios.post('http://localhost:3001/events/api/addEvents', event);
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error sending user data:', error);
+    }
+
+    console.log(event);
   };
 
     return (
@@ -106,29 +121,24 @@ const ResrvForm_Modal = (props) => {
                 <div className="lScatter" ref={lScatter}></div>
                 <div className='line-bot'></div>
             </Button> 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal Heading</Modal.Title>
-                </Modal.Header>
-
+            <Modal show={show} onHide={handleClose} size="lg">
                 <Modal.Body>    
-                
                     <div className="container mt-5">
                       <div className="row justify-content-center">
-                        <div className="col-md-8">
+                        <div className="col-md-12">
                           <div className="card">
                             <div className="card-body">
                               <h2 className="card-title text-center mb-4">Event Reservation Booking</h2>
                               <form onSubmit={handleSubmit}>
-
                                 <div className="form-group">
-                                  <label>Event Title</label>
+                                  <label> Event Title </label>
                                   <input
+                                    name='title'
                                     type="text"
                                     className="form-control"
                                     placeholder="Enter event title"
-                                    value={eventTitle}
-                                    onChange={(e) => setEventTitle(e.target.value)}
+                                    value={event.title}
+                                    onChange={handleChange}
                                     required
                                   />
                                 </div>
@@ -136,11 +146,25 @@ const ResrvForm_Modal = (props) => {
                                 <div className="form-group">
                                   <label>Name</label>
                                   <input
+                                    name='name'
                                     type="text"
                                     className="form-control"
                                     placeholder="Enter your name"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
+                                    value={event.name}
+                                    onChange={handleChange}
+                                    required
+                                  />
+                                </div>
+
+                                <div className="form-group">
+                                  <label>Location</label>
+                                  <input
+                                    name='location'
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Enter the location"
+                                    value={event.location}
+                                    onChange={handleChange}
                                     required
                                   />
                                 </div>
@@ -148,11 +172,12 @@ const ResrvForm_Modal = (props) => {
                                 <div className="form-group">
                                   <label>Email</label>
                                   <input
+                                    name='email'
                                     type="email"
                                     className="form-control"
                                     placeholder="Enter your email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    value={event.email}
+                                    onChange={handleChange}
                                     required
                                   />
                                 </div>
@@ -160,10 +185,11 @@ const ResrvForm_Modal = (props) => {
                                 <div className="form-group">
                                   <label>Date Start</label>
                                   <input
+                                    name='dateStart'
                                     type="date"
                                     className="form-control"
-                                    value={startDate}
-                                    onChange={(e) => setStartDate(e.target.value)}
+                                    value={event.dateStart}
+                                    onChange={handleChange}
                                     required
                                   />
                                 </div>
@@ -171,10 +197,11 @@ const ResrvForm_Modal = (props) => {
                                 <div className="form-group">
                                   <label>Date End</label>
                                   <input
+                                    name='dateEnd'
                                     type="date"
                                     className="form-control"
-                                    value={endDate}
-                                    onChange={(e) => setEndDate(e.target.value)}
+                                    value={event.dateEnd}
+                                    onChange={handleChange}
                                     required
                                   />
                                 </div>
@@ -182,10 +209,11 @@ const ResrvForm_Modal = (props) => {
                                 <div className="form-group">
                                   <label>Time Start</label>
                                   <input
+                                    name='timeStart'
                                     type="time"
                                     className="form-control"
-                                    value={startTime}
-                                    onChange={(e) => setStartTime(e.target.value)}
+                                    value={event.timeStart}
+                                    onChange={handleChange}
                                     required
                                   />
                                 </div>
@@ -193,31 +221,34 @@ const ResrvForm_Modal = (props) => {
                                 <div className="form-group">
                                   <label>Time End</label>
                                   <input
+                                    name='timeEnd'
                                     type="time"
                                     className="form-control"
-                                    value={endTime}
-                                    onChange={(e) => setEndTime(e.target.value)}
+                                    value={event.timeEnd}
+                                    onChange={handleChange}
                                     required
                                   />
                                 </div>
 
                                 <div className="form-group">
                                   <label>Number of Participants</label>
-                                  <input
+                                  <input    
+                                    name='participants'
                                     type="number"
                                     className="form-control"
-                                    value={participants}
-                                    onChange={(e) => setParticipants(e.target.value)}
+                                    value={event.participants}
+                                    onChange={handleChange}
                                     required
                                   />
                                 </div>
 
                                 <div className="form-check">
                                   <input
+                                    name='withAircon'
                                     className="form-check-input"
                                     type="checkbox"
-                                    value={withAircon}
-                                    onChange={(e) => setWithAircon(e.target.checked)}
+                                    value={event.withAircon}
+                                    onChange={handleChange}
                                     id="withAircon"
                                   />
                                   <label className="form-check-label" htmlFor="withAircon">
@@ -245,7 +276,6 @@ const ResrvForm_Modal = (props) => {
                                     placeholder="Enter number of tables (long)"
                                     value={numTablesLong}
                                     onChange={(e) => setNumTablesLong(e.target.value)}
-                                    required
                                   />
                                 </div>
 
@@ -257,7 +287,6 @@ const ResrvForm_Modal = (props) => {
                                     placeholder="Enter number of tables (round)"
                                     value={numTablesRound}
                                     onChange={(e) => setNumTablesRound(e.target.value)}
-                                    required
                                   />
                                 </div>
 
@@ -269,7 +298,6 @@ const ResrvForm_Modal = (props) => {
                                     placeholder="Enter number of chairs"
                                     value={numChairs}
                                     onChange={(e) => setNumChairs(e.target.value)}
-                                    required
                                   />
                                 </div>
 
@@ -306,7 +334,7 @@ const ResrvForm_Modal = (props) => {
                         Close
                     </Button>
                 </Modal.Footer>
-    </Modal>
+            </Modal>
         </div>
     )
 }

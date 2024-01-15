@@ -33,3 +33,6 @@
     animation-duration: 0.6s;
     animation-timing-function: ease-out;
 }
+.form-group {
+    margin-top: 16px;
+}
