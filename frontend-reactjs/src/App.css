@@ -8,10 +8,8 @@
     background: url("../public/images/pool.jpg");
     display: flex;
     flex-direction: column;
-    position: fixed;
 }
 #panel-events {
     padding: 0 64px 0 64px;
     background-color: white;
-    margin-left: 20vw;
 }

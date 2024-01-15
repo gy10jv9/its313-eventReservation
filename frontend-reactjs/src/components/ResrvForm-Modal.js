@@ -101,10 +101,8 @@ const ResrvForm_Modal = (props) => {
     return (
         <div  onMouseMove={handleMouseMove}>
             <Button variant="primary" onClick={handleShow} id='resrv-button'>
-                <div className='line-top'></div>
-                <p style={{position: "relative", zIndex: "2", margin: "5px 0 5px 0", padding: "0"}}> Reserve Event </p>
                 <div className="lScatter" ref={lScatter}></div>
-                <div className='line-bot'></div>
+                Reserve Event
             </Button> 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

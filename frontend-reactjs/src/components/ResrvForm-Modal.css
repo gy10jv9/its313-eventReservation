@@ -1,15 +1,12 @@
 #resrv-button {
     width: 100%;
     margin-top: 32px;
-    padding-top: 0;
-    padding-bottom: 0;
     background: rgba(78,53,49, 0.5);
     backdrop-filter: blur(10px);
     color: white;
     border: none;
     overflow: hidden;
     border-radius: 16px;
-    border: none;
 }
 .lScatter {
     height: 150px;
@@ -20,16 +17,5 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 0;
     transform: translate(-50%, -50%);
-}
-#resrv-button:hover .line-top {
-    animation-name: bttnShine-top;
-    animation-duration: 0.6s;
-    animation-timing-function: ease-out;
-}
-#resrv-button:hover .line-bot {
-    animation-name: bttnShine-bot;
-    animation-duration: 0.6s;
-    animation-timing-function: ease-out;
 }
