@@ -21,18 +21,6 @@ const EventCard = (props) => {
         });
     }
 
-    const getAns = (boolean) => {
-        let ans = ""
-
-        if(boolean == 0) {
-            ans = "No"
-        } else if(boolean == 1) {
-            ans = "Yes"
-        }
-
-        return ans
-    }
-
     return (
         <div>
             <div className="card container" onMouseMove={handleMouseMove}>
@@ -75,16 +63,6 @@ const EventCard = (props) => {
                                         <p className='label'> Other Equipements:  </p>
                                         <p> {props.event.otherEquipments} </p>
                                     </div>
-                                    <div>
-                                        <div className="d-flex justify-content-between">
-                                            <p> with Aircon?: </p>
-                                            <p> {getAns(props.event.withAircon)} </p>
-                                        </div>
-                                        <div className="d-flex justify-content-between">
-                                            <p> with Lights: </p>
-                                            <p> {getAns(props.event.withLights)} </p>
-                                        </div>
-                                    </div>
                                     <div style={{gridColumn: "1/4"}}>
                                         <p className='label'> Instructions: </p>
                                         <p style={{fontStyle: "italic"}}> {props.event.instructions} </p>
@@ -92,7 +70,11 @@ const EventCard = (props) => {
                                 </div>
                                 <hr></hr>
                                 <div className='buttons-container'>
-                                    <ResrvForm_Edit mouseLoc={mouseLoc} />
+                                    <ResrvForm_Edit 
+                                        mouseLoc={mouseLoc} 
+                                        currentId={props.event.eId}
+                                        currentEvent={props.event}
+                                    />
                                     <Button variant="secondary" className='delete-bttn' onClick={() => deleteRecord(props.event.eId)}> Delete Event </Button>
                                 </div>
                             </div>

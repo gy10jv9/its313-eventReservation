@@ -4,7 +4,6 @@ import gsap from 'gsap';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./ResrvForm-Modal.css"
-import { event } from 'jquery';
 
 const ResrvForm_Modal = (props) => {
     const { mouseLoc } = props // halin sa parent nga mouse location
@@ -43,27 +42,13 @@ const ResrvForm_Modal = (props) => {
         timeStart: "",
         timeEnd: "",
         participants: 0,
-        withAircon: false,
-        withLights: 0,
-
+        longTables: 0,
+        roundTables: 0,
+        chairs: 0,
+        otherEquipments: "",
+        instructions: "",
+        status: "pending"
     })
-    const [withAircon, setWithAircon] = useState(false)
-
-    const [eventTitle, setEventTitle] = useState('');
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [startTime, setStartTime] = useState('');
-    const [endTime, setEndTime] = useState('');
-    const [participants, setParticipants] = useState('');
-    const [withAircon, setWithAircon] = useState(false);
-    const [withSoundSystem, setWithSoundSystem] = useState(false);
-    const [numTablesLong, setNumTablesLong] = useState('');
-    const [numTablesRound, setNumTablesRound] = useState('');
-    const [numChairs, setNumChairs] = useState('');
-    const [otherEquipment, setOtherEquipment] = useState('');
-    const [instructions, setInstructions] = useState('');
 
     // para sa button nga animation
     const lScatter = useRef(null)
@@ -97,7 +82,6 @@ const ResrvForm_Modal = (props) => {
 
     const handleChange = (e) => {
         setEvent({ ...event, [e.target.name]: e.target.value });
-        console.log(event) // print the name and email on change
     };
 
   const handleSubmit = async (e) => {
@@ -178,7 +162,6 @@ const ResrvForm_Modal = (props) => {
                                     placeholder="Enter your email"
                                     value={event.email}
                                     onChange={handleChange}
-                                    required
                                   />
                                 </div>
 
@@ -242,82 +225,61 @@ const ResrvForm_Modal = (props) => {
                                   />
                                 </div>
 
-                                <div className="form-check">
-                                  <input
-                                    name='withAircon'
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    value={event.withAircon}
-                                    onChange={handleChange}
-                                    id="withAircon"
-                                  />
-                                  <label className="form-check-label" htmlFor="withAircon">
-                                    With Air Conditioning
-                                  </label>
-                                </div>
-                                <div className="form-check">
-                                  <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    value={withSoundSystem}
-                                    onChange={(e) => setWithSoundSystem(e.target.checked)}
-                                    id="withSoundSystem"
-                                  />
-                                  <label className="form-check-label" htmlFor="withSoundSystem">
-                                    With Sound System
-                                  </label>
-                                </div>
-
                                 <div className="form-group">
                                   <label>Number of Tables (Long)</label>
                                   <input
+                                    name='longTables'
                                     type="number"
                                     className="form-control"
                                     placeholder="Enter number of tables (long)"
-                                    value={numTablesLong}
-                                    onChange={(e) => setNumTablesLong(e.target.value)}
+                                    value={event.longTables}
+                                    onChange={handleChange}
                                   />
                                 </div>
 
                                 <div className="form-group">
                                   <label>Number of Tables (Round)</label>
                                   <input
+                                    name='roundTables'
                                     type="number"
                                     className="form-control"
                                     placeholder="Enter number of tables (round)"
-                                    value={numTablesRound}
-                                    onChange={(e) => setNumTablesRound(e.target.value)}
+                                    value={event.roundTables}
+                                    onChange={handleChange}
                                   />
                                 </div>
 
                                 <div className="form-group">
                                   <label>Number of Chairs</label>
                                   <input
+                                    name='chairs'
                                     type="number"
                                     className="form-control"
                                     placeholder="Enter number of chairs"
-                                    value={numChairs}
-                                    onChange={(e) => setNumChairs(e.target.value)}
+                                    value={event.chairs}
+                                    onChange={handleChange}
                                   />
                                 </div>
 
                                 <div className="form-group">
-                                  <label>Other Equipment</label>
+                                  <label>Other Equipments</label>
                                   <textarea
+                                    name='otherEquipments'
                                     className="form-control"
                                     placeholder="Enter other equipment required"
-                                    value={otherEquipment}
-                                    onChange={(e) => setOtherEquipment(e.target.value)}
+                                    value={event.otherEquipments}
+                                    onChange={handleChange}
                                   ></textarea>
                                 </div>
 
                                 <div className="form-group">
                                   <label>Instructions</label>
                                   <textarea
+                                    name='instructions'
                                     className="form-control"
                                     placeholder="Enter instructions"
-                                    value={instructions}
-                                    onChange={(e) => setInstructions(e.target.value)}
+                                    value={event.instructions}
+                                    onChange={handleChange}
                                   ></textarea>
                                 </div>
 
