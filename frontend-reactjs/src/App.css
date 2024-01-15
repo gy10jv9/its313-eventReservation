@@ -5,11 +5,13 @@
     width: 20vw;
     height: 100vh;
     padding: 8px;
-    background-color: #95CBD7;
+    background: url("../public/images/pool.jpg");
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    position: fixed;
 }
 #panel-events {
-    background-color: #F7F7F7;
+    padding: 0 64px 0 64px;
+    background-color: white;
+    margin-left: 20vw;
 }

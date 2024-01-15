@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import gsap from 'gsap';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import "./ResrvForm-Modal.css"
+import "./ResrvForm-Edit.css"
 
-const ResrvForm_Modal = (props) => {
+const ResrvForm_Edit = (props) => {
     const { mouseLoc } = props // halin sa parent nga mouse location
 
     const handleMouseMove = (event) => {
@@ -14,13 +14,20 @@ const ResrvForm_Modal = (props) => {
     function getPosition(element) {
         var xPosition = 0;
         var yPosition = 0;
-    
-        while (element) { // code para mag compute distance ka div sa 0,0
+      
+        var viewportScrollX = document.documentElement.scrollLeft || document.body.scrollLeft
+        var viewportScrollY = document.documentElement.scrollTop || document.body.scrollTop;
+      
+        while (element) {
             xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
             yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
             element = element.offsetParent;
         }
-    
+      
+        // Adjust for viewport scroll position
+        xPosition -= viewportScrollX;
+        yPosition -= viewportScrollY;
+      
         return { x: xPosition, y: yPosition };
     }
 
@@ -61,8 +68,8 @@ const ResrvForm_Modal = (props) => {
                         tl_lScatter.to(
                             follower,
                             {
-                                x: mouseLoc.current.x - getPosition(lScatter.current).x,
-                                y: mouseLoc.current.y - getPosition(lScatter.current).y,
+                                x: mouseLoc.current.x - getPosition(lScatter.current).x - 150,
+                                y: mouseLoc.current.y - getPosition(lScatter.current).y - 150,
                                 ease: 'power2.out',
                                 duration: 0.01
                             }
@@ -99,12 +106,12 @@ const ResrvForm_Modal = (props) => {
   };
 
     return (
-        <div  onMouseMove={handleMouseMove}>
-            <Button variant="primary" onClick={handleShow} id='resrv-button'>
+        <div onMouseMove={handleMouseMove} style={{width: "48%", overflow: "hidden"}}>
+            <Button variant="primary" onClick={handleShow} className='edit-bttn' style={{width: "100%", paddingBottom: "0"}}>
                 <div className='line-top'></div>
-                <p style={{position: "relative", zIndex: "2", margin: "5px 0 5px 0", padding: "0"}}> Reserve Event </p>
-                <div className="lScatter" ref={lScatter}></div>
+                <p style={{position: "relative", zIndex: "2", margin: "3px 0 3px 0", padding: "0"}}> Edit Event </p>
                 <div className='line-bot'></div>
+                <div className="lScatter" ref={lScatter} style={{width: "300px", height: "300px", background: "radial-gradient(circle, rgba(149,198,201, 0.75) 0%, rgba(225, 225, 225, 0) 80%)"}}></div>   
             </Button> 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -311,4 +318,4 @@ const ResrvForm_Modal = (props) => {
     )
 }
 
-export default ResrvForm_Modal
+export default ResrvForm_Edit

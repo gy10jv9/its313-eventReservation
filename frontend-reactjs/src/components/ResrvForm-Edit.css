@@ -1,0 +1,28 @@
+.line-top {
+    background: radial-gradient(circle, rgba(225, 225, 225, 1) 0%, rgba(225, 225, 225, 0) 80%);
+    height: 4px;
+    transform: translateX(-100%);
+}
+@keyframes bttnShine-top {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+.edit-bttn:hover .line-top {
+    animation-name: bttnShine-top;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+}
+.line-bot {
+    background: radial-gradient(circle, rgba(225, 225, 225, 1) 0%, rgba(225, 225, 225, 0) 80%);
+    height: 4px;
+    transform: translateX(100%);
+}
+@keyframes bttnShine-bot {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+.edit-bttn:hover .line-bot {
+    animation-name: bttnShine-bot;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+}

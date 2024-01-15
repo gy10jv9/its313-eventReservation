@@ -1,5 +1,16 @@
 @font-face {
     font-family: "Poppins Regular";
     src: url('../public/fonts/Poppins-Regular.woff2') format('woff2');
-  }
-  
+}
+@font-face {
+  font-family: "Poppins SemiBold";
+  src: url('../public/fonts/Poppins-SemiBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: "Poppins Light";
+  src: url('../public/fonts/Poppins-Light.ttf') format('woff2');
+} 
+@font-face {
+  font-family: "Ticketing";
+  src: url('../public/fonts/Ticketing.woff2') format('woff2');
+} 

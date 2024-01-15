@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2024 at 12:04 AM
+-- Generation Time: Jan 14, 2024 at 09:36 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `tblevents` (
   `eId` int(11) NOT NULL,
   `eventTitle` varchar(200) NOT NULL,
+  `location` varchar(100) NOT NULL,
   `reserverName` varchar(200) NOT NULL,
   `reserverEmail` varchar(200) NOT NULL,
   `dateStart` date NOT NULL,
@@ -51,9 +52,9 @@ CREATE TABLE `tblevents` (
 -- Dumping data for table `tblevents`
 --
 
-INSERT INTO `tblevents` (`eId`, `eventTitle`, `reserverName`, `reserverEmail`, `dateStart`, `dateEnd`, `timeStart`, `timeEnd`, `numParticipants`, `withAircon`, `withLights`, `numTablesLong`, `numTablesRound`, `numChairs`, `otherEquipments`, `instructions`, `bookingStatus`) VALUES
-(1, 'Event Sample 1', 'Name Sample 1', 'Email Sample 1', '2024-01-01', '2024-01-02', '08:00:00', '12:00:00', 100, 0, 0, 1, 0, 100, '', '', 'pending'),
-(2, 'Event Sample 2', 'Name Sample 2', 'Email Sample 2', '2024-01-02', '2024-01-02', '08:00:00', '12:00:00', 100, 0, 0, 1, 0, 100, '', '', 'pending');
+INSERT INTO `tblevents` (`eId`, `eventTitle`, `location`, `reserverName`, `reserverEmail`, `dateStart`, `dateEnd`, `timeStart`, `timeEnd`, `numParticipants`, `withAircon`, `withLights`, `numTablesLong`, `numTablesRound`, `numChairs`, `otherEquipments`, `instructions`, `bookingStatus`) VALUES
+(1, 'Event Sample 1', 'Auditorium', 'Name Sample 1', 'Email Sample 1', '2024-01-01', '2024-01-02', '08:00:00', '12:00:00', 100, 0, 0, 1, 0, 100, '', '', 'pending'),
+(2, 'Event Sample 2', 'Little Theatre', 'Name Sample 2', 'Email Sample 2', '2024-01-02', '2024-01-02', '08:00:00', '12:00:00', 100, 0, 0, 1, 0, 100, '', '', 'pending');
 
 --
 -- Indexes for dumped tables
