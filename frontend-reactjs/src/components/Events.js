@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
-import { Collapse, Button } from 'react-bootstrap'
 import SearchBox from './SearchBox';
 import EventCard from './EventCard';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -74,6 +73,7 @@ const Events = (props) => {
                 />
             ))}
             
+            <div style={{marginTop: "64px"}}></div>
         </div>
     )
 }
