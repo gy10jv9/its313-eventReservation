@@ -74,6 +74,7 @@ const EventCard = (props) => {
                                         mouseLoc={mouseLoc} 
                                         currentId={props.event.eId}
                                         currentEvent={props.event}
+                                        fetchData={props.fetchData}
                                     />
                                     <Button variant="secondary" className='delete-bttn' onClick={() => deleteRecord(props.event.eId)}> Delete Event </Button>
                                 </div>

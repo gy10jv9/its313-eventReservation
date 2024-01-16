@@ -94,7 +94,7 @@ const ResrvForm_Modal = (props) => {
         console.error('Error sending user data:', error);
     }
 
-    console.log(event);
+    props.fetchData()
   };
 
     return (

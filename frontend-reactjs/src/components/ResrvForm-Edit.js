@@ -12,8 +12,8 @@ const ResrvForm_Edit = (props) => {
 
     const handleMouseMove = (event) => {
         //console.log(`test ${mouseLoc.current.x}`)
-        console.log(getPosition(lScatter.current).y)
-        console.log(currentEvent)
+        //console.log(getPosition(lScatter.current).y)
+        //console.log(currentEvent)
     }
     function getPosition(element) {
         var xPosition = 0;
@@ -62,9 +62,11 @@ const ResrvForm_Edit = (props) => {
 
     // para sa button nga animation
     const lScatter = useRef(null)
+    const lScatter2 = useRef(null)
 
     // gsap button animations
     const tl_lScatter= gsap.timeline()
+    const tl_lScatter2= gsap.timeline()
     useEffect(() => {
         const ctx = gsap.context(() => {
             const updateScatter = () => {
@@ -76,6 +78,20 @@ const ResrvForm_Edit = (props) => {
                             {
                                 x: mouseLoc.current.x - getPosition(lScatter.current).x - 150,
                                 y: mouseLoc.current.y - getPosition(lScatter.current).y - 150,
+                                ease: 'power2.out',
+                                duration: 0.01
+                            }
+                        );
+                    }
+                }
+                if (lScatter2) { // kng na rendered na
+                    const follower = lScatter2.current;
+                    if (follower) { // kng na rendered na
+                        tl_lScatter2.to(
+                            follower,
+                            {
+                                x: mouseLoc.current.x - getPosition(lScatter2.current).x,
+                                y: mouseLoc.current.y - getPosition(lScatter2.current).y,
                                 ease: 'power2.out',
                                 duration: 0.01
                             }
@@ -124,7 +140,7 @@ const ResrvForm_Edit = (props) => {
             console.error('Error sending user data:', error);
         }
     
-        console.log(event);
+        props.fetchData()
     };
 
     return (
@@ -141,7 +157,7 @@ const ResrvForm_Edit = (props) => {
                       <div className="row justify-content-center">
                         <div className="col-md-12">
                           <div className="card">
-                            <div className="card-body">
+                            <div className="card-body parentOfForm">
                                 <h2 className="card-title text-center mb-4">Event Reservation Booking</h2>
                                 <form onSubmit={handleSubmit}>
 
