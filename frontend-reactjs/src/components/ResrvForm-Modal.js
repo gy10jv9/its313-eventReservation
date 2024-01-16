@@ -10,7 +10,7 @@ const ResrvForm_Modal = (props) => {
 
     const handleMouseMove = (event) => {
         //console.log(`test ${mouseLoc.current.x}`)
-        console.log(getPosition(lScatter.current).y)
+        //console.log(getPosition(lScatter.current).y)
     }
     function getPosition(element) {
         var xPosition = 0;
@@ -106,7 +106,7 @@ const ResrvForm_Modal = (props) => {
                 <div className='line-bot'></div>
             </Button> 
             <Modal show={show} onHide={handleClose} size="lg">
-                <Modal.Body>    
+                <Modal.Body>
                     <div className="container mt-5">
                       <div className="row justify-content-center">
                         <div className="col-md-12">

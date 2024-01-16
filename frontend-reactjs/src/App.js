@@ -32,6 +32,7 @@ function App() {
                 <CalendarMain onDateChange={handleDataFromCalendar}/>
                 <ResrvForm_Modal 
                     mouseLoc={mouseLoc_ref}
+                    fetchData={fetchData}
                 />
             </div>
             <div className='flex-grow-1' id="panel-events">
@@ -40,7 +41,6 @@ function App() {
                     mouseLoc={mouseLoc_ref} 
                     searchDate={selectedDate}
                 />
-                <button onClick={fetchData}>test</button>
             </div>
         </div>
     );
