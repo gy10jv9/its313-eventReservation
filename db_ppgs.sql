@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2024 at 09:36 AM
+-- Generation Time: Jan 15, 2024 at 11:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -54,7 +54,8 @@ CREATE TABLE `tblevents` (
 
 INSERT INTO `tblevents` (`eId`, `eventTitle`, `location`, `reserverName`, `reserverEmail`, `dateStart`, `dateEnd`, `timeStart`, `timeEnd`, `numParticipants`, `withAircon`, `withLights`, `numTablesLong`, `numTablesRound`, `numChairs`, `otherEquipments`, `instructions`, `bookingStatus`) VALUES
 (1, 'Event Sample 1', 'Auditorium', 'Name Sample 1', 'Email Sample 1', '2024-01-01', '2024-01-02', '08:00:00', '12:00:00', 100, 0, 0, 1, 0, 100, '', '', 'pending'),
-(2, 'Event Sample 2', 'Little Theatre', 'Name Sample 2', 'Email Sample 2', '2024-01-02', '2024-01-02', '08:00:00', '12:00:00', 100, 0, 0, 1, 0, 100, '', '', 'pending');
+(2, 'Event Sample 2', 'Little Theatre', 'Name Sample 2', 'Email Sample 2', '2024-01-02', '2024-01-02', '08:00:00', '12:00:00', 100, 0, 0, 1, 0, 100, '', '', 'pending'),
+(3, 'Event Sample 3 - edited', 'Quadrangle', 'Johnny Bravo', 'bravo@gmail.com', '2024-01-19', '2024-02-09', '08:00:00', '22:00:00', 100, 1, 0, 10, 10, 100, 'Lorem ipsum dolor sit amet, consectetur.\r\n', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.\r\n', 'pending');
 
 --
 -- Indexes for dumped tables
@@ -74,7 +75,7 @@ ALTER TABLE `tblevents`
 -- AUTO_INCREMENT for table `tblevents`
 --
 ALTER TABLE `tblevents`
-  MODIFY `eId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `eId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

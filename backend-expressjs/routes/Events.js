@@ -27,9 +27,9 @@ router.post('/api/getEvents', (req, res) => {
 
 // Insert data into the 'users' table
 router.post('/api/addEvents', (req, res) => {
-    const { title, name } = req.body; // dapat same sang mga label sa dictionary
-    const sql = 'INSERT INTO tblevents (eventTitle, reserverName) VALUES (?, ?)';
-    db.query(sql, [title, name], (err, result) => {
+    const { title, name, location, email, dateStart, dateEnd, timeStart, timeEnd, participants, longTables, roundTables, chairs, otherEquipments, instructions, status } = req.body; // dapat same sang mga label sa dictionary
+    const sql = 'INSERT INTO tblevents (eventTitle, reserverName, location, reserverEmail, dateStart, dateEnd, timeStart, timeEnd, numParticipants, numTablesLong, numTablesRound, numChairs, otherEquipments, instructions, bookingStatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    db.query(sql, [title, name, location, email, dateStart, dateEnd, timeStart, timeEnd, participants, longTables, roundTables, chairs, otherEquipments, instructions, status], (err, result) => {
         if (err) {
             console.error('Error inserting user:', err);
             res.status(500).json({ error: 'Internal Server Error' });
@@ -39,6 +39,18 @@ router.post('/api/addEvents', (req, res) => {
         res.json({ message: 'User inserted successfully!' });
     });
 });
+
+router.post('/api/edit/:id', (req, res) => {
+    const id = req.params.id;
+    const { title, name, location, email, dateStart, dateEnd, timeStart, timeEnd, participants, longTables, roundTables, chairs, otherEquipments, instructions, status } = req.body;
+  
+    // Update the record in the database
+    const query = `UPDATE tblevents SET eventTitle = '${title}', reserverName = '${name}', location = '${location}', reserverEmail = '${email}', dateStart = '${dateStart}', dateEnd = '${dateEnd}', timeStart = '${timeStart}', timeEnd = '${timeEnd}', numParticipants = '${participants}', numTablesLong = '${longTables}', numTablesRound = '${roundTables}', numChairs = '${chairs}', otherEquipments = '${otherEquipments}', instructions = '${instructions}', bookingStatus = '${status}' WHERE eId = ${id}`;
+    db.query(query, (err, rows) => {
+      if (err) throw err;
+      res.send('Record edited')
+    });
+  });
 
 router.delete('/api/delRecord/:id', function(req, res) {
     const query = `DELETE FROM tblevents WHERE eId = ${req.params.id}`

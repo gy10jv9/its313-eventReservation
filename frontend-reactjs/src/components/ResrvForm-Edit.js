@@ -1,15 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import gsap from 'gsap';
+import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./ResrvForm-Edit.css"
 
 const ResrvForm_Edit = (props) => {
     const { mouseLoc } = props // halin sa parent nga mouse location
+    const currentId = props.currentId
+    const currentEvent = props.currentEvent
 
     const handleMouseMove = (event) => {
         //console.log(`test ${mouseLoc.current.x}`)
         console.log(getPosition(lScatter.current).y)
+        console.log(currentEvent)
     }
     function getPosition(element) {
         var xPosition = 0;
@@ -38,21 +42,23 @@ const ResrvForm_Edit = (props) => {
     const handleShow = () => setShow(true);
 
     // para sa event - details
-    const [eventTitle, setEventTitle] = useState('');
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [startTime, setStartTime] = useState('');
-    const [endTime, setEndTime] = useState('');
-    const [participants, setParticipants] = useState('');
-    const [withAircon, setWithAircon] = useState(false);
-    const [withSoundSystem, setWithSoundSystem] = useState(false);
-    const [numTablesLong, setNumTablesLong] = useState('');
-    const [numTablesRound, setNumTablesRound] = useState('');
-    const [numChairs, setNumChairs] = useState('');
-    const [otherEquipment, setOtherEquipment] = useState('');
-    const [instructions, setInstructions] = useState('');
+    const [event, setEvent] = useState({
+        title: "",
+        name: "",
+        location: "",
+        email: "",
+        dateStart: "",
+        dateEnd: "",
+        timeStart: "",
+        timeEnd: "",
+        participants: 0,
+        longTables: 0,
+        roundTables: 0,
+        chairs: 0,
+        otherEquipments: "",
+        instructions: "",
+        status: ""
+    })
 
     // para sa button nga animation
     const lScatter = useRef(null)
@@ -82,28 +88,44 @@ const ResrvForm_Edit = (props) => {
 
             return () => window.removeEventListener("mousemove", updateScatter)
         })
+
+        // initialize values sng event
+        setEvent({
+            title: currentEvent.eventTitle,
+            name: currentEvent.reserverName,
+            location: currentEvent.location,
+            email: currentEvent.reserverEmail,
+            dateStart: currentEvent.dateStart,
+            dateEnd: currentEvent.dateEnd,
+            timeStart: currentEvent.timeStart,
+            timeEnd: currentEvent.timeEnd,
+            participants: currentEvent.numParticipants,
+            longTables: currentEvent.numTablesLong,
+            roundTables: currentEvent.numTablesRound,
+            chairs: currentEvent.numChairs,
+            otherEquipments: currentEvent.otherEquipments,
+            instructions: currentEvent.instructions,
+            status: currentEvent.bookingStatus,
+        })
     }, [])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log('Submitted:', {
-      eventTitle,
-      name,
-      email,
-      startDate,
-      endDate,
-      startTime,
-      endTime,
-      participants,
-      withAircon,
-      withSoundSystem,
-      numTablesLong,
-      numTablesRound,
-      numChairs,
-      otherEquipment,
-      instructions,
-    });
-  };
+    const handleChange = (e) => {
+        setEvent({ ...event, [e.target.name]: e.target.value });
+        console.log(event) // print the name and email on change
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        try {
+            const response = await axios.post(`http://localhost:3001/events/api/edit/${currentId}`, event);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error sending user data:', error);
+        }
+    
+        console.log(event);
+    };
 
     return (
         <div onMouseMove={handleMouseMove} style={{width: "48%", overflow: "hidden"}}>
@@ -120,195 +142,193 @@ const ResrvForm_Edit = (props) => {
                         <div className="col-md-12">
                           <div className="card">
                             <div className="card-body">
-                              <h2 className="card-title text-center mb-4">Event Reservation Booking</h2>
-                              <form onSubmit={handleSubmit}>
+                                <h2 className="card-title text-center mb-4">Event Reservation Booking</h2>
+                                <form onSubmit={handleSubmit}>
 
                                 <div className="form-group">
-                                  <label>Event Title</label>
+                                  <label> Event Title </label>
                                   <input
+                                    name='title'
                                     type="text"
                                     className="form-control"
                                     placeholder="Enter event title"
-                                    value={eventTitle}
-                                    onChange={(e) => setEventTitle(e.target.value)}
+                                    value={event.title}
+                                    onChange={handleChange}
                                     required
                                   />
                                 </div>
 
                                 <div className="form-group">
-                                  <label>Name</label>
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Enter your name"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                    required
-                                  />
-                                </div>
+                                    <label>Name</label>
+                                    <input
+                                      name='name'
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="Enter your name"
+                                      value={event.name}
+                                      onChange={handleChange}
+                                      required
+                                    />
+                                  </div>
 
-                                <div className="form-group">
-                                  <label>Location</label>
-                                  <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Enter your name"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                    required
-                                  />
-                                </div>
+                                  <div className="form-group">
+                                    <label>Location</label>
+                                    <input
+                                      name='location'
+                                      type="text"
+                                      className="form-control"
+                                      placeholder="Enter the location"
+                                      value={event.location}
+                                      onChange={handleChange}
+                                      required
+                                    />
+                                  </div>
 
-                                <div className="form-group">
-                                  <label>Email</label>
-                                  <input
-                                    type="email"
-                                    className="form-control"
-                                    placeholder="Enter your email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                  />
-                                </div>
+                                  <div className="form-group">
+                                    <label>Email</label>
+                                    <input
+                                      name='email'
+                                      type="email"
+                                      className="form-control"
+                                      placeholder="Enter your email"
+                                      value={event.email}
+                                      onChange={handleChange}
+                                    />
+                                  </div>
 
-                                <div className="form-group">
-                                  <label>Date Start</label>
-                                  <input
-                                    type="date"
-                                    className="form-control"
-                                    value={startDate}
-                                    onChange={(e) => setStartDate(e.target.value)}
-                                    required
-                                  />
-                                </div>
+                                  <div className="form-group">
+                                    <label>Date Start</label>
+                                    <input
+                                      name='dateStart'
+                                      type="date"
+                                      className="form-control"
+                                      value={event.dateStart}
+                                      onChange={handleChange}
+                                      required
+                                    />
+                                  </div>
 
-                                <div className="form-group">
-                                  <label>Date End</label>
-                                  <input
-                                    type="date"
-                                    className="form-control"
-                                    value={endDate}
-                                    onChange={(e) => setEndDate(e.target.value)}
-                                    required
-                                  />
-                                </div>
+                                  <div className="form-group">
+                                    <label>Date End</label>
+                                    <input
+                                      name='dateEnd'
+                                      type="date"
+                                      className="form-control"
+                                      value={event.dateEnd}
+                                      onChange={handleChange}
+                                      required
+                                    />
+                                  </div>
 
-                                <div className="form-group">
-                                  <label>Time Start</label>
-                                  <input
-                                    type="time"
-                                    className="form-control"
-                                    value={startTime}
-                                    onChange={(e) => setStartTime(e.target.value)}
-                                    required
-                                  />
-                                </div>
+                                  <div className="form-group">
+                                    <label>Time Start</label>
+                                    <input
+                                      name='timeStart'
+                                      type="time"
+                                      className="form-control"
+                                      value={event.timeStart}
+                                      onChange={handleChange}
+                                      required
+                                    />
+                                  </div>
 
-                                <div className="form-group">
-                                  <label>Time End</label>
-                                  <input
-                                    type="time"
-                                    className="form-control"
-                                    value={endTime}
-                                    onChange={(e) => setEndTime(e.target.value)}
-                                    required
-                                  />
-                                </div>
+                                  <div className="form-group">
+                                    <label>Time End</label>
+                                    <input
+                                      name='timeEnd'
+                                      type="time"
+                                      className="form-control"
+                                      value={event.timeEnd}
+                                      onChange={handleChange}
+                                      required
+                                    />
+                                  </div>
 
-                                <div className="form-group">
-                                  <label>Number of Participants</label>
-                                  <input
-                                    type="number"
-                                    className="form-control"
-                                    value={participants}
-                                    onChange={(e) => setParticipants(e.target.value)}
-                                    required
-                                  />
-                                </div>
+                                  <div className="form-group">
+                                    <label>Number of Participants</label>
+                                    <input    
+                                      name='participants'
+                                      type="number"
+                                      className="form-control"
+                                      value={event.participants}
+                                      onChange={handleChange}
+                                      required
+                                    />
+                                  </div>
 
-                                <div className="form-check">
-                                  <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    value={withAircon}
-                                    onChange={(e) => setWithAircon(e.target.checked)}
-                                    id="withAircon"
-                                  />
-                                  <label className="form-check-label" htmlFor="withAircon">
-                                    With Air Conditioning
-                                  </label>
-                                </div>
-                                <div className="form-check">
-                                  <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    value={withSoundSystem}
-                                    onChange={(e) => setWithSoundSystem(e.target.checked)}
-                                    id="withSoundSystem"
-                                  />
-                                  <label className="form-check-label" htmlFor="withSoundSystem">
-                                    With Sound System
-                                  </label>
-                                </div>
+                                  <div className="form-group">
+                                    <label>Number of Tables (Long)</label>
+                                    <input
+                                      name='longTables'
+                                      type="number"
+                                      className="form-control"
+                                      placeholder="Enter number of tables (long)"
+                                      value={event.longTables}
+                                      onChange={handleChange}
+                                    />
+                                  </div>
 
-                                <div className="form-group">
-                                  <label>Number of Tables (Long)</label>
-                                  <input
-                                    type="number"
-                                    className="form-control"
-                                    placeholder="Enter number of tables (long)"
-                                    value={numTablesLong}
-                                    onChange={(e) => setNumTablesLong(e.target.value)}
-                                    required
-                                  />
-                                </div>
+                                  <div className="form-group">
+                                    <label>Number of Tables (Round)</label>
+                                    <input
+                                      name='roundTables'
+                                      type="number"
+                                      className="form-control"
+                                      placeholder="Enter number of tables (round)"
+                                      value={event.roundTables}
+                                      onChange={handleChange}
+                                    />
+                                  </div>
 
-                                <div className="form-group">
-                                  <label>Number of Tables (Round)</label>
-                                  <input
-                                    type="number"
-                                    className="form-control"
-                                    placeholder="Enter number of tables (round)"
-                                    value={numTablesRound}
-                                    onChange={(e) => setNumTablesRound(e.target.value)}
-                                    required
-                                  />
-                                </div>
+                                  <div className="form-group">
+                                    <label>Number of Chairs</label>
+                                    <input
+                                      name='chairs'
+                                      type="number"
+                                      className="form-control"
+                                      placeholder="Enter number of chairs"
+                                      value={event.chairs}
+                                      onChange={handleChange}
+                                    />
+                                  </div>
 
-                                <div className="form-group">
-                                  <label>Number of Chairs</label>
-                                  <input
-                                    type="number"
-                                    className="form-control"
-                                    placeholder="Enter number of chairs"
-                                    value={numChairs}
-                                    onChange={(e) => setNumChairs(e.target.value)}
-                                    required
-                                  />
-                                </div>
+                                  <div className="form-group">
+                                    <label>Other Equipments</label>
+                                    <textarea
+                                      name='otherEquipments'
+                                      className="form-control"
+                                      placeholder="Enter other equipment required"
+                                      value={event.otherEquipments}
+                                      onChange={handleChange}
+                                    ></textarea>
+                                  </div>
 
-                                <div className="form-group">
-                                  <label>Other Equipment</label>
-                                  <textarea
-                                    className="form-control"
-                                    placeholder="Enter other equipment required"
-                                    value={otherEquipment}
-                                    onChange={(e) => setOtherEquipment(e.target.value)}
-                                  ></textarea>
-                                </div>
+                                  <div className="form-group">
+                                    <label>Instructions</label>
+                                    <textarea
+                                      name='instructions'
+                                      className="form-control"
+                                      placeholder="Enter instructions"
+                                      value={event.instructions}
+                                      onChange={handleChange}
+                                    ></textarea>
+                                  </div>
 
-                                <div className="form-group">
-                                  <label>Instructions</label>
-                                  <textarea
-                                    className="form-control"
-                                    placeholder="Enter instructions"
-                                    value={instructions}
-                                    onChange={(e) => setInstructions(e.target.value)}
-                                  ></textarea>
-                                </div>
+                                    <div className="form-group">
+                                        <label>Approval Status</label>
+                                            <input
+                                              name='status'
+                                              type="text"
+                                              className="form-control"
+                                              placeholder="Enter Status"
+                                              value={event.status}
+                                              onChange={handleChange}
+                                              required
+                                            />
+                                    </div>
 
-                                <button type="submit" className="btn btn-primary btn-block mt-4">Submit</button>
-                              </form>
+                                  <button type="submit" className="btn btn-primary btn-block mt-4">Submit</button>
+                                </form>
                             </div>
                           </div>
                         </div>
