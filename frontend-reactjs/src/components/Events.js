@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react'
 import axios from 'axios'
 import SearchBox from './SearchBox';
 import EventCard from './EventCard';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Events.css'
 
-const Events = (props) => {
+const Events = (props, ref) => {
     const [events, setEvents] = useState([])
     const [searchQuery, setSearchQuery] = useState("") // halin sa searchbox ang data
     const { mouseLoc } = props // halin sa parent nga mouse location
@@ -14,13 +14,11 @@ const Events = (props) => {
         //console.log(`test ${mouseLoc.current.x} ${mouseLoc.current.y}`)
     }
 
-    console.log(`SearchQuery : ${searchQuery}`) // test lang kng gagana
-
     const handle_sBoxStateChange = (newState) => { // para ma update ang "searchQuery"
         setSearchQuery(newState)
     }
 
-    const keys = ["eventTitle", "location"] // field names sng table sa database
+    const keys = ["eventTitle", "location", "reserverName", "dateStart", "dateEnd"] // field names sng table sa database
     const search = (data) => { // search with filter
         return data.filter((event) => keys.some((key) => event[key].toLowerCase().includes(searchQuery)))
     }
@@ -31,16 +29,24 @@ const Events = (props) => {
         ));
     }
 
-    useEffect(() => {
-        // Fetch events data from Express endpoint
+    const fetchData = async () => {
         axios.post('http://localhost:3001/events/api/getEvents')
-          .then(response => {
-            setEvents(response.data);
-            console.log(setEvents)
-          })
-          .catch(error => {
-            console.error('Error fetching events:', error);
-          });
+            .then(response => {
+                setEvents(response.data);
+                console.log(`Data fetched successfully ${setEvents}`)
+            })
+            .catch(error => {
+                console.error('Error fetching events:', error);
+            });
+    };
+
+    // pass the fetchData() sa parent
+    useImperativeHandle(ref, () => ({
+        fetchData
+    }));
+
+    useEffect(() => {
+        fetchData()
     }, []);
 
     return (
@@ -70,6 +76,7 @@ const Events = (props) => {
                     event={event}
                     toggleCardContent={toggleCardContent}
                     mouseLoc={mouseLoc}
+                    fetchData={fetchData}
                 />
             ))}
             
@@ -78,4 +85,4 @@ const Events = (props) => {
     )
 }
 
-export default Events
+export default forwardRef(Events)

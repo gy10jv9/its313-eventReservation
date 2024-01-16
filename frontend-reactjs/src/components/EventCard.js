@@ -21,6 +21,11 @@ const EventCard = (props) => {
         });
     }
 
+    const handleDelete = () => {
+        deleteRecord(props.event.eId)
+        props.fetchData()
+    }
+
     return (
         <div>
             <div className="card container" onMouseMove={handleMouseMove}>
@@ -74,8 +79,9 @@ const EventCard = (props) => {
                                         mouseLoc={mouseLoc} 
                                         currentId={props.event.eId}
                                         currentEvent={props.event}
+                                        fetchData={props.fetchData}
                                     />
-                                    <Button variant="secondary" className='delete-bttn' onClick={() => deleteRecord(props.event.eId)}> Delete Event </Button>
+                                    <Button variant="secondary" className='delete-bttn' onClick={handleDelete}> Delete Event </Button>
                                 </div>
                             </div>
                         </Collapse>
