@@ -39,7 +39,7 @@ const EventCard = (props) => {
                                 <div className='event-endDate'> {new Date(props.event.dateEnd).toISOString().slice(0, 10)} </div>
                                 <div className='event-startTime'> {props.event.timeStart} </div>
                                 <div className='event-endTime'> {props.event.timeEnd} </div>
-                                <div className='event-approvalStatus'> {props.event.bookingStatus} </div>
+                                <div className='event-approvalStatus'> {props.event.status} </div>
                             </div>
                         </div>
                         <Collapse in={props.event.isExpanded}>

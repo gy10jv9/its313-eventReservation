@@ -121,7 +121,7 @@ const ResrvForm_Edit = (props) => {
             chairs: currentEvent.numChairs,
             otherEquipments: currentEvent.otherEquipments,
             instructions: currentEvent.instructions,
-            status: currentEvent.bookingStatus,
+            status: currentEvent.status,
         })
     }, [])
 

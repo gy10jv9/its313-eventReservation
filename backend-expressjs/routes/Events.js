@@ -28,7 +28,7 @@ router.post('/api/getEvents', (req, res) => {
 // Insert data into the 'users' table
 router.post('/api/addEvents', (req, res) => {
     const { title, name, location, email, dateStart, dateEnd, timeStart, timeEnd, participants, longTables, roundTables, chairs, otherEquipments, instructions, status } = req.body; // dapat same sang mga label sa dictionary
-    const sql = 'INSERT INTO tblevents (eventTitle, reserverName, location, reserverEmail, dateStart, dateEnd, timeStart, timeEnd, numParticipants, numTablesLong, numTablesRound, numChairs, otherEquipments, instructions, bookingStatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    const sql = 'INSERT INTO tblevents (eventTitle, reserverName, location, reserverEmail, dateStart, dateEnd, timeStart, timeEnd, numParticipants, numTablesLong, numTablesRound, numChairs, otherEquipments, instructions, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
     db.query(sql, [title, name, location, email, dateStart, dateEnd, timeStart, timeEnd, participants, longTables, roundTables, chairs, otherEquipments, instructions, status], (err, result) => {
         if (err) {
             console.error('Error inserting user:', err);
@@ -45,7 +45,7 @@ router.post('/api/edit/:id', (req, res) => {
     const { title, name, location, email, dateStart, dateEnd, timeStart, timeEnd, participants, longTables, roundTables, chairs, otherEquipments, instructions, status } = req.body;
   
     // Update the record in the database
-    const query = `UPDATE tblevents SET eventTitle = '${title}', reserverName = '${name}', location = '${location}', reserverEmail = '${email}', dateStart = '${dateStart}', dateEnd = '${dateEnd}', timeStart = '${timeStart}', timeEnd = '${timeEnd}', numParticipants = '${participants}', numTablesLong = '${longTables}', numTablesRound = '${roundTables}', numChairs = '${chairs}', otherEquipments = '${otherEquipments}', instructions = '${instructions}', bookingStatus = '${status}' WHERE eId = ${id}`;
+    const query = `UPDATE tblevents SET eventTitle = '${title}', reserverName = '${name}', location = '${location}', reserverEmail = '${email}', dateStart = '${dateStart}', dateEnd = '${dateEnd}', timeStart = '${timeStart}', timeEnd = '${timeEnd}', numParticipants = '${participants}', numTablesLong = '${longTables}', numTablesRound = '${roundTables}', numChairs = '${chairs}', otherEquipments = '${otherEquipments}', instructions = '${instructions}', status = '${status}' WHERE eId = ${id}`;
     db.query(query, (err, rows) => {
       if (err) throw err;
       res.send('Record edited')
