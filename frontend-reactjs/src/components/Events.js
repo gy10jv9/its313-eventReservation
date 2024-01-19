@@ -7,20 +7,44 @@ import './Events.css'
 
 const Events = (props, ref) => {
     const [events, setEvents] = useState([])
-    const [searchQuery, setSearchQuery] = useState("") // halin sa searchbox ang data
     const { mouseLoc } = props // halin sa parent nga mouse location
 
-    const handleMouseMove = (event) => {
-        //console.log(`test ${mouseLoc.current.x} ${mouseLoc.current.y}`)
-    }
+    // para sa search/filter sng data
+    const [searchQuery, setSearchQuery] = useState("") // halin sa searchbox ang data
+    const [ filter, setFilter ] = useState({
+        status: "",
+        location: "",
+        dateStart: "",
+    })
 
     const handle_sBoxStateChange = (newState) => { // para ma update ang "searchQuery"
         setSearchQuery(newState)
     }
+    const handleFilterChange = (filterType) => {
+        setFilter({ 
+            ...filter,
+            [filterType.target.name]: filterType.target.value
+        })
+    }
 
-    const keys = ["eventTitle", "location", "reserverName", "dateStart", "dateEnd"] // field names sng table sa database
+    const keys = ["eventTitle", "location", "reserverName", "dateStart", "dateEnd", "status"] // field names sng table sa database
     const search = (data) => { // search with filter
-        return data.filter((event) => keys.some((key) => event[key].toLowerCase().includes(searchQuery)))
+        return data.filter((event) => {
+            const formattedDate = new Date(event.dateStart).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+            })
+
+            const searchFilter = keys.some((key) => event[key].toLowerCase().includes(searchQuery))
+            const searchDate = formattedDate.toLocaleLowerCase().includes(searchQuery)
+
+            const statusFilter = !filter.status || event.status.toLowerCase() == filter.status
+            const locationFilter = !filter.location || event.location.toLowerCase() == filter.location
+            const dateFilter = !filter.dateStart || formattedDate == filter.dateStart
+
+            return searchFilter && statusFilter && locationFilter && dateFilter && searchDate
+        })
     }
 
     const toggleCardContent = (eventId) => {
@@ -45,12 +69,24 @@ const Events = (props, ref) => {
         fetchData
     }));
 
+    const test = () => {
+        console.log(events.map((event) => { 
+            let date = new Date(event.dateStart).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+            })
+            return date
+        }))
+    }
+
     useEffect(() => {
         fetchData()
     }, []);
 
     return (
-        <div onMouseMove={handleMouseMove}>
+        <div>
+            <button onClick={() => test()}> test </button>
             <div id='header-container'>
                 <h1 className='container'> Event Reservations </h1>
                 <SearchBox onStateChange={handle_sBoxStateChange}/>
@@ -64,6 +100,12 @@ const Events = (props, ref) => {
                                 <div className='event-startDate'> Date </div>
                                 <div className='event-startTime'> Time </div>
                                 <div className='event-approvalStatus'> Approval Status </div>
+                                <select name='status' onChange={handleFilterChange}>
+                                    <option value={""}> All </option>
+                                    <option value={"pending"}> Pending </option>
+                                    <option value={"approved"}> Approved </option>
+                                    <option value={"cancelled"}> Cancelled </option>
+                                </select>
                             </div>
                         </div>
                     </div>
