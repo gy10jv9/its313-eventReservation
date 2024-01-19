@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect } from 'react'
 import { Collapse, Button } from 'react-bootstrap'
 import ResrvForm_Edit from './ResrvForm-Edit'
 import axios from 'axios'
@@ -26,6 +26,16 @@ const EventCard = (props) => {
         props.fetchData()
     }
 
+    useEffect(() => {
+        //console.log(dateStart_long)
+    }, [])
+
+    const dateStart_long = new Date(props.event.dateEnd).toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    })
+
     return (
         <div>
             <div className="card container" onMouseMove={handleMouseMove}>
@@ -35,7 +45,7 @@ const EventCard = (props) => {
                                 <h5 className="card-title event-title" style={{fontFamily: "Poppins SemiBold", fontSize: "18px"}}> {props.event.eventTitle} </h5>
                                 <h6 className="card-subtitle mb-2 text-muted event-reserver"> {props.event.reserverName} </h6>
                                 <div className='event-location'> {props.event.location} </div>
-                                <div className='event-startDate'> {new Date(props.event.dateStart).toISOString().slice(0, 10)} </div>
+                                <div className='event-startDate'> {dateStart_long} </div>
                                 <div className='event-endDate'> {new Date(props.event.dateEnd).toISOString().slice(0, 10)} </div>
                                 <div className='event-startTime'> {props.event.timeStart} </div>
                                 <div className='event-endTime'> {props.event.timeEnd} </div>

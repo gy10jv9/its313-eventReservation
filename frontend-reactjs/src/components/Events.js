@@ -13,26 +13,37 @@ const Events = (props, ref) => {
     const [searchQuery, setSearchQuery] = useState("") // halin sa searchbox ang data
     const [ filter, setFilter ] = useState({
         status: "",
-        location: ""
+        location: "",
+        dateStart: "",
     })
 
     const handle_sBoxStateChange = (newState) => { // para ma update ang "searchQuery"
         setSearchQuery(newState)
     }
-    const handleFilterChange = (select) => {
+    const handleFilterChange = (filterType) => {
         setFilter({ 
-            ...filter, 
-            [select.target.name]: select.target.value
+            ...filter,
+            [filterType.target.name]: filterType.target.value
         })
     }
 
     const keys = ["eventTitle", "location", "reserverName", "dateStart", "dateEnd", "status"] // field names sng table sa database
     const search = (data) => { // search with filter
         return data.filter((event) => {
+            const formattedDate = new Date(event.dateStart).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+            })
+
             const searchFilter = keys.some((key) => event[key].toLowerCase().includes(searchQuery))
+            const searchDate = formattedDate.toLocaleLowerCase().includes(searchQuery)
+
             const statusFilter = !filter.status || event.status.toLowerCase() == filter.status
             const locationFilter = !filter.location || event.location.toLowerCase() == filter.location
-            return searchFilter && statusFilter && locationFilter
+            const dateFilter = !filter.dateStart || formattedDate == filter.dateStart
+
+            return searchFilter && statusFilter && locationFilter && dateFilter && searchDate
         })
     }
 
@@ -58,12 +69,24 @@ const Events = (props, ref) => {
         fetchData
     }));
 
+    const test = () => {
+        console.log(events.map((event) => { 
+            let date = new Date(event.dateStart).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+            })
+            return date
+        }))
+    }
+
     useEffect(() => {
         fetchData()
     }, []);
 
     return (
         <div>
+            <button onClick={() => test()}> test </button>
             <div id='header-container'>
                 <h1 className='container'> Event Reservations </h1>
                 <SearchBox onStateChange={handle_sBoxStateChange}/>
