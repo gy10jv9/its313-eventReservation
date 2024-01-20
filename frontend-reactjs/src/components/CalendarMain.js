@@ -4,31 +4,36 @@ import 'react-calendar/dist/Calendar.css';
 import "./CalendarMain.css"
 
 const CalendarMain = (props) => {
-    const [ selectedDate, setSelectedDate ] = useState({
-        month: "",
-        date: "",
-        year: ""
+    /*const dateToday = new Date().toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
     })
-    const handleDateChange = (newDate) => {
-        setSelectedDate({
-            ...selectedDate,
-            month: newDate.getMonth()
-        });
-        props.onDateChange(selectedDate)
-    }
+    const [ selectedDate, setSelectedDate ] = useState(dateToday) // set and initail date sa date today*/
 
-    const handleTest = () => {
-        console.log(selectedDate)
+    const handleDateChange = (date) => {
+        const stringDate = date.toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+        })
+
+        /*setSelectedDate(stringDate)
+        setSelectedDate(updatedDate => { // para ang rendered nga date halin sa babaw nga line ang ma register 
+            //console.log(updatedDate)
+            props.onDateChange(updatedDate)
+        })*/
+
+        props.onDateChange(stringDate)
     }
 
     return (
         <div className="calendar-container">
             <Calendar
                 className={"calendar-main"}
-                calendarType='US'
+                calendarType='gregory'
                 onChange={handleDateChange}
             />
-            <button onClick={handleTest}>test</button>
         </div>
 
     );

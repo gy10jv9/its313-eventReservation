@@ -14,7 +14,7 @@ const Events = (props, ref) => {
     const [ filter, setFilter ] = useState({
         status: "",
         location: "",
-        dateStart: "",
+        date: "",
     })
 
     const handle_sBoxStateChange = (newState) => { // para ma update ang "searchQuery"
@@ -30,20 +30,19 @@ const Events = (props, ref) => {
     const keys = ["eventTitle", "location", "reserverName", "dateStart", "dateEnd", "status"] // field names sng table sa database
     const search = (data) => { // search with filter
         return data.filter((event) => {
-            const formattedDate = new Date(event.dateStart).toLocaleDateString("en-US", {
+            let formattedDateStart = new Date(event.dateStart).toLocaleDateString("en-US", {
                 month: "long",
                 day: "numeric",
                 year: "numeric",
             })
 
-            const searchFilter = keys.some((key) => event[key].toLowerCase().includes(searchQuery))
-            const searchDate = formattedDate.toLocaleLowerCase().includes(searchQuery)
+            let searchFilter = keys.some((key) => event[key].toLowerCase().includes(searchQuery)) || formattedDateStart.toLocaleLowerCase().includes(searchQuery)
 
-            const statusFilter = !filter.status || event.status.toLowerCase() == filter.status
-            const locationFilter = !filter.location || event.location.toLowerCase() == filter.location
-            const dateFilter = !filter.dateStart || formattedDate == filter.dateStart
+            let statusFilter = !filter.status || event.status.toLowerCase() == filter.status
+            let locationFilter = !filter.location || event.location.toLowerCase() == filter.location
+            let dateFilter = !filter.dateStart || formattedDateStart == filter.dateStart
 
-            return searchFilter && statusFilter && locationFilter && dateFilter && searchDate
+            return searchFilter && statusFilter && locationFilter && dateFilter
         })
     }
 
@@ -54,10 +53,11 @@ const Events = (props, ref) => {
     }
 
     const fetchData = async () => {
-        axios.post('http://localhost:3001/events/api/getEvents')
+        let link = 'http://localhost:3001/events/api/getEvents'
+        axios.post(link)
             .then(response => {
                 setEvents(response.data);
-                console.log(`Data fetched successfully ${setEvents}`)
+                console.log(`Data fetched successfully from ${link}`)
             })
             .catch(error => {
                 console.error('Error fetching events:', error);
