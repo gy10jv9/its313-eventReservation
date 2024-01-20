@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 const SearchBox = (props) => {
-    //console.log(events.filter(event => event.eventTitle.toLowerCase().includes("a"))) // test ang filter
-    //console.log(`query: ${query} ${props.searchDate}`)
-
     const handleChange = (event) => {
-        props.onStateChange(event.target.value) // to pass the value halin sa input pakadto sa parent component
+        props.onStateChange(event.target.value.toLowerCase()) // to pass the value halin sa input pakadto sa parent component
     }
 
     return (

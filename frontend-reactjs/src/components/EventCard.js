@@ -30,7 +30,7 @@ const EventCard = (props) => {
         //console.log(dateStart_long)
     }, [])
 
-    const dateStart_long = new Date(props.event.dateEnd).toLocaleDateString("en-US", {
+    const dateStart_long = new Date(props.event.dateStart).toLocaleDateString("en-US", {
         month: "long",
         day: "numeric",
         year: "numeric",
