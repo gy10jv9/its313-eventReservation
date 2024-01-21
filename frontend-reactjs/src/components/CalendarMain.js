@@ -5,13 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 import "./CalendarMain.css"
 
 const CalendarMain = (props) => {
-    const { setSelectedDate } = useContext(Context_Global)
-    /*const dateToday = new Date().toLocaleDateString("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-    })
-    const [ selectedDate, setSelectedDate ] = useState(dateToday) // set and initail date sa date today*/
+    const { searchFilter, setSearchFilter } = useContext(Context_Global)
 
     const handleDateChange = (date) => {
         const stringDate = date.toLocaleDateString("en-US", {
@@ -19,7 +13,10 @@ const CalendarMain = (props) => {
             day: "numeric",
             year: "numeric",
         })
-        setSelectedDate(stringDate)
+        setSearchFilter({
+            ...searchFilter,
+            date: stringDate
+        })
     }
 
     return (
