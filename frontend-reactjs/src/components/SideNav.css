@@ -1,0 +1,13 @@
+.container-navs {
+    padding: 16px
+}
+.navigations {
+    height: 100%;
+    width: 100%;
+    border-radius: 16px;
+    background-color: white;
+}
+.logo-lccb {
+    aspect-ratio: 1/1;
+    background: url("../../public/images/lccbLogo.png") center center/cover;
+}

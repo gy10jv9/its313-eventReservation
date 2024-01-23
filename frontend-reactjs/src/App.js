@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { Context_Global } from './components/Context-Global';
+import SideNav from './components/SideNav';
 import CalendarMain from "./components/CalendarMain";
 import Events from "./components/Events";
 import ResrvForm_Modal from "./components/ResrvForm-Modal";
+import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
 import "./fonts.css"
 
@@ -30,7 +32,8 @@ function App() {
     }
 
     return (
-        <div className="d-flex flex-row" onMouseMove={handleMouseMove} style={{width: "100vw", height: "100vh"}}>
+        <div className='d-flex flex-row' onMouseMove={handleMouseMove} style={{width: "100vw", height: "100vh"}}>
+            <SideNav/>
             <Context_Global.Provider value={{ searchFilter, setSearchFilter }}>
                 <div id="panel-calendar">
                     <CalendarMain/>
