@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import { getPosition } from '../utils/Animation-LightScatter';
 import gsap from 'gsap';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -15,26 +16,6 @@ const ResrvForm_Edit = (props) => {
         //console.log(getPosition(lScatter.current).y)
         //console.log(currentEvent)
     }
-    function getPosition(element) {
-        var xPosition = 0;
-        var yPosition = 0;
-      
-        var viewportScrollX = document.documentElement.scrollLeft || document.body.scrollLeft
-        var viewportScrollY = document.documentElement.scrollTop || document.body.scrollTop;
-      
-        while (element) {
-            xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
-            yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
-            element = element.offsetParent;
-        }
-      
-        // Adjust for viewport scroll position
-        xPosition -= viewportScrollX;
-        yPosition -= viewportScrollY;
-      
-        return { x: xPosition, y: yPosition };
-    }
-
 
     // para sa modal
     const [show, setShow] = useState(false);

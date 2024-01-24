@@ -9,10 +9,11 @@ import "./App.css"
 import "./fonts.css"
 
 function App() {
-    const mouseLoc_ref = useRef({x: 0, y: 0}) // mouse location
+    // mouse coordinates
+    const mouseCoordinates = useRef({x: 0, y: 0})
     const handleMouseMove = (event) => {
-        mouseLoc_ref.current = { x: event.clientX, y: event.clientY }
-        //console.log('Mouse position:', mouseLoc_ref.current.x, mouseLoc_ref.current.y)
+        mouseCoordinates.current = { x: event.clientX, y: event.clientY }
+        //console.log('Mouse position:', mouseCoordinates.current.x, mouseCoordinates.current.y)
     }
 
 
@@ -33,12 +34,12 @@ function App() {
 
     return (
         <div className='d-flex flex-row' onMouseMove={handleMouseMove} style={{width: "100vw", height: "100vh"}}>
-            <SideNav/>
-            <Context_Global.Provider value={{ searchFilter, setSearchFilter }}>
+            <Context_Global.Provider value={{ searchFilter, setSearchFilter, mouseCoordinates }}>
+                <SideNav/>
                 <div id="panel-calendar">
                     <CalendarMain/>
                     <ResrvForm_Modal 
-                        mouseLoc={mouseLoc_ref}
+                        mouseLoc={mouseCoordinates}
                         fetchData={fetchData}
                     />
                 </div>
@@ -46,7 +47,7 @@ function App() {
                 <div className='flex-grow-1' id="panel-events">
                     <Events
                         ref={eventsRef}
-                        mouseLoc={mouseLoc_ref} 
+                        mouseLoc={mouseCoordinates} 
                         searchDate={searchFilter.date}
                     />
                 </div>

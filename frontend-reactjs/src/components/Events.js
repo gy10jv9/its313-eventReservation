@@ -83,7 +83,6 @@ const Events = (props, ref) => {
     return (
         <div>
             <div id='header-container'>
-                <button onClick={() => {checkFilter()}}> check filter </button>
                 <h1 className='container'> Event Reservations </h1>
                 <SearchBox onStateChange={handle_sBoxStateChange}/>
             </div>
