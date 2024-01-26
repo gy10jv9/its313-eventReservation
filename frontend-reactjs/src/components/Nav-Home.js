@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, useContext, useState, useEffect } from "react"
+import React, { useRef, useLayoutEffect, useContext } from "react"
 import gsap from "gsap"
 import { Context_Global } from "./Context-Global"
 import { updateScatter } from '../utils/Animation-LightScatter';

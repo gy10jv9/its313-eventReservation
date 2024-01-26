@@ -81,7 +81,7 @@ const Events = (props, ref) => {
     }
 
     return (
-        <div>
+        <div className='container-eventsSection'>
             <div id='header-container'>
                 <h1 className='container'> Event Reservations </h1>
                 <SearchBox onStateChange={handle_sBoxStateChange}/>

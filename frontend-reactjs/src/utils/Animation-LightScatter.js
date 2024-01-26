@@ -21,12 +21,11 @@ export const getPosition = (element) => {
 }
 
 // animation para mag follow ang mouse
-const tl_lightScatter= gsap.timeline()
-export const updateScatter = (ref, element_width, element_height, mouseCoordinates) => {
+export const updateScatter = (ref, element_width, element_height, mouseCoordinates, timeline) => {
     if (ref) { // kng na rendered na
         const follower = ref.current;
         if (follower) { // kng na rendered na
-            tl_lightScatter.to(
+            timeline.to(
                 follower,
                 {
                     x: mouseCoordinates.current.x - getPosition(ref.current).x - (element_width/2),

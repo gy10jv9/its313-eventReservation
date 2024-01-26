@@ -36,19 +36,18 @@ function App() {
         <div className='d-flex flex-row' onMouseMove={handleMouseMove} style={{width: "100vw", height: "100vh"}}>
             <Context_Global.Provider value={{ searchFilter, setSearchFilter, mouseCoordinates }}>
                 <SideNav/>
-                <div id="panel-calendar">
-                    <CalendarMain/>
-                    <ResrvForm_Modal 
-                        mouseLoc={mouseCoordinates}
-                        fetchData={fetchData}
-                    />
-                </div>
-
                 <div className='flex-grow-1' id="panel-events">
                     <Events
                         ref={eventsRef}
                         mouseLoc={mouseCoordinates} 
                         searchDate={searchFilter.date}
+                    />
+                </div>
+                <div id="panel-calendar">
+                    <CalendarMain/>
+                    <ResrvForm_Modal 
+                        mouseLoc={mouseCoordinates}
+                        fetchData={fetchData}
                     />
                 </div>
             </Context_Global.Provider>
