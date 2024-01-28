@@ -81,43 +81,48 @@ const Events = (props, ref) => {
     }
 
     return (
-        <div className='container-eventsSection'>
-            <div id='header-container'>
-                <h1 className='container'> Event Reservations </h1>
-                <SearchBox onStateChange={handle_sBoxStateChange}/>
+        <div id="panel-events">
+            <div className="container-bttn-reserve">
+                
             </div>
-            <div className="card container" style={{border: "none", boxShadow: "none"}}>
-                    <div className="card-body">
-                        <div className='container-cardHeader d-flex flex-row'>
-                            <div className='flex-grow-1 event-primaryInformartion'>
-                                <h5 className="card-title event-title"> Event Title </h5>
-                                <div className='event-location'> Location </div>
-                                <div className='event-startDate'> Date </div>
-                                <div className='event-startTime'> Time </div>
-                                <div className='event-approvalStatus'> Approval Status </div>
-                                <select name='status' onChange={handleFilterChange}>
-                                    <option value={""}> All </option>
-                                    <option value={"pending"}> Pending </option>
-                                    <option value={"approved"}> Approved </option>
-                                    <option value={"cancelled"}> Cancelled </option>
-                                </select>
+            <div className='container-eventsSection'>
+                <div id='header-container'>
+                    <h1 className='container'> Event Reservations </h1>
+                    <SearchBox onStateChange={handle_sBoxStateChange}/>
+                </div>
+                <div className="card container" style={{border: "none", boxShadow: "none"}}>
+                        <div className="card-body">
+                            <div className='container-cardHeader d-flex flex-row'>
+                                <div className='flex-grow-1 event-primaryInformartion'>
+                                    <h5 className="card-title event-title"> Event Title </h5>
+                                    <div className='event-location'> Location </div>
+                                    <div className='event-startDate'> Date </div>
+                                    <div className='event-startTime'> Time </div>
+                                    <div className='event-approvalStatus'> Approval Status </div>
+                                    <select name='status' onChange={handleFilterChange}>
+                                        <option value={""}> All </option>
+                                        <option value={"pending"}> Pending </option>
+                                        <option value={"approved"}> Approved </option>
+                                        <option value={"cancelled"}> Cancelled </option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            {/* event cards */}
-            {search(events).map(event => ( // gagamit sng search filter nga function sa babaw
-                <EventCard 
-                    key={event.eId}
-                    event={event}
-                    toggleCardContent={toggleCardContent}
-                    mouseLoc={mouseLoc}
-                    fetchData={fetchData}
-                />
-            ))}
-            
-            <div style={{marginTop: "64px"}}></div>
+                {/* event cards */}
+                {search(events).map(event => ( // gagamit sng search filter nga function sa babaw
+                    <EventCard 
+                        key={event.eId}
+                        event={event}
+                        toggleCardContent={toggleCardContent}
+                        mouseLoc={mouseLoc}
+                        fetchData={fetchData}
+                    />
+                ))}
+
+                <div style={{marginTop: "64px"}}></div>
+            </div>
         </div>
     )
 }

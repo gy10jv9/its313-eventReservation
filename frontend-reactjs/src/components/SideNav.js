@@ -7,12 +7,7 @@ import Nav_Reservations from "./Nav-Reservations"
 import Nav_About from "./Nav-About"
 import "./SideNav.css"
 
-const SideNav = () => {  
-    const { mouseCoordinates } = useContext(Context_Global)
-    
-    // TIMELINES: para inde mag sulit sulit himo timeline kag mag overlap
-    const tl_lightScatter= useRef(gsap.timeline())
-
+const SideNav = () => {
     // Nav1 Refs & Animation
     const tl_nav1 = useRef(null)
     const navRef1 = useRef(null)
@@ -30,9 +25,6 @@ const SideNav = () => {
                 ease: "power2.inOut",
             })
         tl_nav1.current.pause()
-
-        /*window.addEventListener('mousemove', () => updateScatter(2, 2, mouseCoordinates, tl_lightScatter.current))
-        return () => window.removeEventListener("mousemove", updateScatter)*/
     }, [])
 
     // Nav2 Refs & Animation
@@ -52,9 +44,6 @@ const SideNav = () => {
                 ease: "power2.inOut",
             })
         tl_nav2.current.pause()
-
-        /*window.addEventListener('mousemove', () => updateScatter(lightScatter2, 2, 2, mouseCoordinates, tl_lightScatter.current))
-        return () => window.removeEventListener("mousemove", updateScatter)*/
     }, [])
 
         // Nav2 Refs & Animation
@@ -74,24 +63,20 @@ const SideNav = () => {
                     ease: "power2.inOut",
                 })
             tl_nav3.current.pause()
-    
-            /*window.addEventListener('mousemove', () => updateScatter(lightScatter3, 2, 2, mouseCoordinates, tl_lightScatter.current))
-            return () => window.removeEventListener("mousemove", updateScatter)*/
         }, [])
 
     return (
-        <div className="d-none d-md-flex d-sm-none d-xs-none col-lg-2 container-sideNavs">
+        <div className="d-flex container-sideNavs">
             <div className="sideNavs sideNavs-header">
                 <div className="container-logo">
                     <div className="logo-lccb"></div>
-                    <div className="d-none d-lg-flex d-md-none container-txt">
+                    <div className="container-txt">
                         <h1> PPGS </h1>
                         <h2> Venue Reservations </h2>
                     </div>
                 </div>
             </div>
-
-            <div className="sideNavs">
+            <div className="flex-grow-1 sideNavs">
                 <div className="nav" ref={navRef1} onMouseEnter={() => {tl_nav1.current.play()}} onMouseLeave={() => {tl_nav1.current.kill(); tl_nav1.current.reverse({ duration: 0.6 })}}>
                 <svg className="nav-icon" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" ref={svgRef1}>
                     <path d="M9 17.25C8.58579 17.25 8.25 17.5858 8.25 18C8.25 18.4142 8.58579 18.75 9 18.75H15C15.4142 18.75 15.75 18.4142 15.75 18C15.75 17.5858 15.4142 17.25 15 17.25H9Z" fill="#1C274C"/>
@@ -103,7 +88,6 @@ const SideNav = () => {
                         <div className="lightScatter2"></div>
                     </div>
                 </div>
-
                 <div className="nav" ref={navRef2} onMouseEnter={() => {tl_nav2.current.play()}} onMouseLeave={() => {tl_nav2.current.kill(); tl_nav2.current.reverse({ duration: 0.6 })}}>
                 <svg className="nav-icon" width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" ref={svgRef2}>
                     <path d="M7 10H17M7 14H12M7 3V5M17 3V5M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -114,7 +98,6 @@ const SideNav = () => {
                         <div className="lightScatter2"></div>
                     </div>
                 </div>
-
                 <div className="nav" ref={navRef3} onMouseEnter={() => {tl_nav3.current.play()}} onMouseLeave={() => {tl_nav3.current.kill(); tl_nav3.current.reverse({ duration: 0.6 })}}>
                 <svg className="nav-icon" height="20px" width="20px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" ref={svgRef3}>
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

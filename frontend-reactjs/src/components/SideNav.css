@@ -1,10 +1,18 @@
 .container-sideNavs {
     padding: 1.25%;
+    width: 200px;
     flex-direction: column;
+}
+.bttn-menu {
+    border: 1px solid black;
+    height: 32px;
+    aspect-ratio: 1/1;
+    background-size: cover;
+    background-position: center center;
 }
 .sideNavs {
     padding: 6.5% 0 6.5% 0;
-    height: 100%;
+    height: auto;
     border-radius: 0 0 12px 12px;
     background-color: white;
     display: flex;
@@ -15,6 +23,7 @@
     height: auto;
     margin-bottom: 10px;
     border-radius: 12px 12px 0 0;
+    max-height: 112px;
 }
 .container-logo {
     margin-top: 12px;
@@ -167,7 +176,9 @@
     background-color: #224D9D;
 }
 
+@media only screen and ( max-width: 576px ) {
 
+}
 @media only screen and ( max-width: 1030px ) {
     .sideNavs h1 {
         font-family: "Poppins SemiBold";

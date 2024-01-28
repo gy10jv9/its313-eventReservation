@@ -1,3 +1,35 @@
+.container-bttn-reserve {
+    width: 50%;
+    height: 200px;
+    border: 1px #0A1D40 dashed;
+    font-size: 24px;
+    color: #0A1D40;
+    border-radius: 12px;
+}
+#panel-events {
+    padding: 1.25% 0 1.25% 0;
+    display: flex;
+    flex-direction: column;
+}
+.container-filters {
+    background-color: white;
+    height: 112px;
+}
+.bttn-square {
+    background-color: #224D9D;
+    color: white;
+    cursor: pointer;
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.bttn-square:hover {
+    background-color: #0A1D40;
+}
 #header-container {
     margin-top: 32px;
     height: 80px;
