@@ -16,9 +16,20 @@
     border-radius: 12px;
     box-shadow: 2px 2px 8px 0 rgba(34, 77, 157, 0.20) !important;
 }
+.hover-shade {
+    width: 100px;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+}
 .bttn-reserve:hover {
     background-color: #163264;
     box-shadow: none !important;
+}
+.icon-plus {
+    width: 36px;
+    aspect-ratio: 1/1;
+    margin-bottom: 4px;
 }
 .icon-theatre {
     height: 100%;

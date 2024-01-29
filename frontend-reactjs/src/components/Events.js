@@ -83,8 +83,9 @@ const Events = (props, ref) => {
     return (
         <div className='col-lg-8' id="panel-events">
             <section className='d-flex flex-row top'>
-                <button className='d-flex flex-row btn shadow-none bttn-reserve'>
-                    <img src='images/icon-plus.png'></img>
+                <button className='d-flex flex-column align-items-center justify-content-center btn shadow-none bttn-reserve'>
+                    <div className='hover-shade'> test</div>
+                    <img className='icon-plus' src='images/icon-plus.png'></img>
                     Add Reservation
                 </button>
             </section>
