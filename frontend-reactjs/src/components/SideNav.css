@@ -17,13 +17,14 @@
     background-color: white;
     display: flex;
     flex-direction: column;
+    box-shadow: 2px 2px 8px 0 rgba(34, 77, 157, 0.10);
 }
 .sideNavs-header {
     padding: 6.5%;
-    height: auto;
+    min-height: 120px;
     margin-bottom: 10px;
     border-radius: 12px 12px 0 0;
-    max-height: 112px;
+    box-shadow: 2px 2px 8px 0 rgba(34, 77, 157, 0.10);
 }
 .container-logo {
     margin-top: 12px;

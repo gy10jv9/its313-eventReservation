@@ -81,10 +81,13 @@ const Events = (props, ref) => {
     }
 
     return (
-        <div id="panel-events">
-            <div className="container-bttn-reserve">
-                
-            </div>
+        <div className='col-lg-8' id="panel-events">
+            <section className='d-flex flex-row top'>
+                <button className='d-flex flex-row btn shadow-none bttn-reserve'>
+                    <img src='images/icon-plus.png'></img>
+                    Add Reservation
+                </button>
+            </section>
             <div className='container-eventsSection'>
                 <div id='header-container'>
                     <h1 className='container'> Event Reservations </h1>

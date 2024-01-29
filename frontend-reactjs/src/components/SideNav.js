@@ -66,7 +66,7 @@ const SideNav = () => {
         }, [])
 
     return (
-        <div className="d-flex container-sideNavs">
+        <div className="d-flex col-2 container-sideNavs">
             <div className="sideNavs sideNavs-header">
                 <div className="container-logo">
                     <div className="logo-lccb"></div>

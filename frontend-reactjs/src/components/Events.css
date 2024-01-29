@@ -1,15 +1,28 @@
-.container-bttn-reserve {
-    width: 50%;
-    height: 200px;
-    border: 1px #0A1D40 dashed;
-    font-size: 24px;
-    color: #0A1D40;
-    border-radius: 12px;
-}
 #panel-events {
     padding: 1.25% 0 1.25% 0;
     display: flex;
     flex-direction: column;
+}
+#panel-events section.top {
+    min-height: 120px;
+    width: 100%;
+}
+.bttn-reserve {
+    height: 100%;
+    aspect-ratio: 2/1;
+    background-color: #224D9D;
+    font-size: 18px;
+    color: white;
+    border-radius: 12px;
+    box-shadow: 2px 2px 8px 0 rgba(34, 77, 157, 0.20) !important;
+}
+.bttn-reserve:hover {
+    background-color: #163264;
+    box-shadow: none !important;
+}
+.icon-theatre {
+    height: 100%;
+    aspect-ratio: 1/1;
 }
 .container-filters {
     background-color: white;
