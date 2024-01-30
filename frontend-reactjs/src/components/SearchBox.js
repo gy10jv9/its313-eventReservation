@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./searchBox.css"
 
 const SearchBox = (props) => {
     const handleChange = (event) => {
@@ -6,10 +7,10 @@ const SearchBox = (props) => {
     }
 
     return (
-        <div>
+        <div className='container-sBox'>
             <input 
                 type="text"
-                placeholder="Search items" 
+                placeholder="Search events" 
                 onChange={handleChange}
             />
         </div>

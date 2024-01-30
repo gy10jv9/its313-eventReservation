@@ -15,25 +15,53 @@
     color: white;
     border-radius: 12px;
     box-shadow: 2px 2px 8px 0 rgba(34, 77, 157, 0.20) !important;
+    overflow: hidden;
+    position: relative;
 }
 .hover-shade {
-    width: 100px;
-    height: 100%;
-    background-color: black;
+    aspect-ratio: 2/1;
+    height: 72px;
+    background-color: #142c57;
     position: absolute;
+    z-index: 0;
+    border-radius: 50%;
+    bottom: -73px;
+}
+@keyframes shade-fill {
+    from { height: 72px; }
+    to { height: 210px; }
+}
+.bttn-reserve:hover .hover-shade {
+    animation: shade-fill 0.3s ease-out forwards;
 }
 .bttn-reserve:hover {
-    background-color: #163264;
+    background-color: #224D9D;
     box-shadow: none !important;
 }
-.icon-plus {
-    width: 36px;
-    aspect-ratio: 1/1;
-    margin-bottom: 4px;
+.bttn-reserve img, .bttn-reserve p {
+    position: relative;
+    z-index: 2;
 }
-.icon-theatre {
-    height: 100%;
+.bttn-reserve p {
+    margin: 0;
+    color: white;
+}
+.icon-plus {
+    width: 34px;
     aspect-ratio: 1/1;
+    margin-bottom: 6px;
+}
+.container-dateTime {
+    height: 100%;
+    flex-grow: 1;
+    background-color: white;
+    border-radius: 12px;
+    margin-left: 1.9%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 16px;
 }
 .container-filters {
     background-color: white;
@@ -54,20 +82,36 @@
 .bttn-square:hover {
     background-color: #0A1D40;
 }
-#header-container {
-    margin-top: 32px;
-    height: 80px;
+#panel-events section.main {
+    background-color: white;
+    margin-top: 1.25%;
+    border-radius: 12px;
+    box-shadow: 2px 2px 8px 0 rgba(34, 77, 157, 0.10);
+    flex-grow: 1;
+    padding: 32px 16px 0 16px;
+} 
+.container-filter {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 16px;
+}
+.icon-filter {
+    aspect-ratio: 1/1;
+    width: 24px;
+    margin-right: 8px;
+}
+select {
+    background-color: white;
+    border: 1px solid #bac6dd;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 #header-container h1 {
     font-size: 32px;
-    color: #12404F;
-}
-h5 {
-    font-size: 16px;
     color: #12404F;
 }
 .cardEvents {

@@ -33,7 +33,7 @@ function App() {
     }
 
     return (
-        <div className='d-flex flex-row' style={{width: "100vw", height: "100vh"}}>
+        <div className='d-flex flex-row' style={{width: "100vw", height: "100vh", overflowX: "hidden"}}>
             <Context_Global.Provider value={{ searchFilter, setSearchFilter, mouseCoordinates }}>
                 <SideNav/>
                 <Events
@@ -41,12 +41,16 @@ function App() {
                     mouseLoc={mouseCoordinates} 
                     searchDate={searchFilter.date}
                 />
-                <div id="panel-calendar">
-                    <CalendarMain/>
+                <div id="panel-calendar" className='col-lg-3'>
+                    <div className='container-calendar'>
+                        <CalendarMain/>
+                    </div>
+                    <div className='flex-grow-1 w-100 bg-white' style={{marginTop: "16px"}}></div>
+                    {/*<CalendarMain/>
                     <ResrvForm_Modal 
                         mouseLoc={mouseCoordinates}
                         fetchData={fetchData}
-                    />
+    />*/}
                 </div>
             </Context_Global.Provider>
         </div>

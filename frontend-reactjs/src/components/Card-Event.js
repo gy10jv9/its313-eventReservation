@@ -1,0 +1,24 @@
+import React, { useEffect } from 'react'
+import { Collapse, Button } from 'react-bootstrap'
+import ResrvForm_Edit from './ResrvForm-Edit'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import "./Card-Event.css"
+
+const Card_Event = () => {
+    return (
+        <div>
+            <div className="card container">
+                <div className="card-body">
+                    <div className='d-flex flex-row container-primaryInfo'>
+                        <div className="event-primaryInfo title"> Sample Title </div>
+                        <div className='event-primaryInfo location'> Location </div>
+                        <div className='event-primaryInfo time'> 12:00 am </div>
+                        <div className='event-primaryInfo status'> cancelled </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Card_Event

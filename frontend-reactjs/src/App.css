@@ -1,19 +1,32 @@
 * {
     font-family: "Poppins Regular";
-    box-sizing: border-box;
+    box-sizing: border-box !important;
+    color: #0A1D40;
 }
 body {
     background-color: #f1f1f1;
 }
+h1 {
+    font-size: 24px;
+}
+h2 {
+    font-size: 20px;
+}
+h3 {
+    font-size: 16px;
+}
 #panel-calendar {
-    width: 20vw;
-    height: 100vh;
-    padding: 8px;
-    background: url("../public/images/pool.jpg");
+    padding: 1.25%;
     display: flex;
     flex-direction: column;
 }
-
+.container-calendar {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: white;
+    border-radius: 12px;
+    padding: 16px;
+}
 @media only screen and ( max-width: 576px ) {
     
 }
