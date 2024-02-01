@@ -63,10 +63,6 @@
     align-items: flex-end;
     padding-right: 16px;
 }
-.container-filters {
-    background-color: white;
-    height: 112px;
-}
 .bttn-square {
     background-color: #224D9D;
     color: white;
@@ -95,7 +91,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 32px;
 }
 .icon-filter {
     aspect-ratio: 1/1;

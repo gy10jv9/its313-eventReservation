@@ -87,10 +87,6 @@ const Events = (props, ref) => {
         fetchData()
     }, []);
 
-    const checkFilter = () => {
-        console.log(searchFilter)
-    }
-
     return (
         <div className='col-lg-7' id="panel-events">
             <section className='d-flex flex-row top'>
@@ -124,23 +120,12 @@ const Events = (props, ref) => {
                 </div>
 
                 <Card_Event/>
-
-                <div className="card container" style={{border: "none", boxShadow: "none"}}>
-                        <div className="card-body">
-                            <div className='container-cardHeader d-flex flex-row'>
-                                <div className='flex-grow-1 event-primaryInformartion'>
-                                    <h5 className="card-title event-title"> Event Title </h5>
-                                    <div className='event-location'> Location </div>
-                                    <div className='event-startDate'> Date </div>
-                                    <div className='event-startTime'> Time </div>
-                                    <div className='event-approvalStatus'> Approval Status </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <Card_Event/>
+                <Card_Event/>
+                <Card_Event/>
 
                 {/* event cards */}
-                {search(events).map(event => ( // gagamit sng search filter nga function sa babaw
+                {/*{search(events).map(event => ( // gagamit sng search filter nga function sa babaw
                     <EventCard 
                         key={event.eId}
                         event={event}
@@ -150,7 +135,7 @@ const Events = (props, ref) => {
                     />
                 ))}
 
-                <div style={{marginTop: "64px"}}></div>
+                <div style={{marginTop: "64px"}}></div>*/}
             </section>
         </div>
     )
