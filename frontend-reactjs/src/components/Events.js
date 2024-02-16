@@ -3,12 +3,23 @@ import axios from 'axios'
 import { Context_Global } from './Context-Global';
 import SearchBox from './SearchBox';
 import EventCard from './EventCard';
+import Card_Event from './Card-Event';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Events.css'
 
 const Events = (props, ref) => {
     const [events, setEvents] = useState([])
     const { mouseLoc } = props // halin sa parent nga mouse location
+
+    // para sa real time clock
+    const [ time, settime ] = useState(new Date())
+    useEffect(() => {
+        let interval = setInterval(() => {
+            settime(new Date())
+        }, 1000)
+
+        return () => clearInterval(interval)
+    }, [])
 
     // para sa search/filter sng data
     const { searchFilter, setSearchFilter } = useContext(Context_Global)
@@ -76,49 +87,56 @@ const Events = (props, ref) => {
         fetchData()
     }, []);
 
-    const checkFilter = () => {
-        console.log(searchFilter)
-    }
-
     return (
-        <div>
-            <div id='header-container'>
-                <button onClick={() => {checkFilter()}}> check filter </button>
-                <h1 className='container'> Event Reservations </h1>
-                <SearchBox onStateChange={handle_sBoxStateChange}/>
-            </div>
-            <div className="card container" style={{border: "none", boxShadow: "none"}}>
-                    <div className="card-body">
-                        <div className='container-cardHeader d-flex flex-row'>
-                            <div className='flex-grow-1 event-primaryInformartion'>
-                                <h5 className="card-title event-title"> Event Title </h5>
-                                <div className='event-location'> Location </div>
-                                <div className='event-startDate'> Date </div>
-                                <div className='event-startTime'> Time </div>
-                                <div className='event-approvalStatus'> Approval Status </div>
-                                <select name='status' onChange={handleFilterChange}>
-                                    <option value={""}> All </option>
-                                    <option value={"pending"}> Pending </option>
-                                    <option value={"approved"}> Approved </option>
-                                    <option value={"cancelled"}> Cancelled </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+        <div className='col-lg-7' id="panel-events">
+            <section className='d-flex flex-row top'>
+                <button className='d-flex flex-column align-items-center justify-content-center btn shadow-none bttn-reserve'>
+                    <div className='hover-shade'></div>
+                    <img className='icon-plus' src='images/icon-plus.png'></img>
+                    <p style={{fontSize: "16px"}}> Add Reservation </p>
+                </button>
+                <div className='container-dateTime'>
+                    {/*<h1> {searchFilter.date} </h1>
+                    <h2> time: {time.toLocaleTimeString()} </h2>*/}
+                </div>
+            </section>
+
+            <section className='main'>
+                <div className='container-filter'>
+                    <SearchBox onStateChange={handle_sBoxStateChange}/>
+                    <img src='images/icon-filter.png' className='icon-filter'></img>
+                    <select name='location' onChange={handleFilterChange} style={{marginRight: "4px"}}>
+                        <option value={""}> Location: All </option>
+                        <option value={"pending"}> Pending </option>
+                        <option value={"approved"}> Approved </option>
+                        <option value={"cancelled"}> Cancelled </option>
+                    </select>
+                    <select name='status' onChange={handleFilterChange}>
+                        <option value={""}> Status: All </option>
+                        <option value={"pending"}> Pending </option>
+                        <option value={"approved"}> Approved </option>
+                        <option value={"cancelled"}> Cancelled </option>
+                    </select>
                 </div>
 
-            {/* event cards */}
-            {search(events).map(event => ( // gagamit sng search filter nga function sa babaw
-                <EventCard 
-                    key={event.eId}
-                    event={event}
-                    toggleCardContent={toggleCardContent}
-                    mouseLoc={mouseLoc}
-                    fetchData={fetchData}
-                />
-            ))}
-            
-            <div style={{marginTop: "64px"}}></div>
+                <Card_Event/>
+                <Card_Event/>
+                <Card_Event/>
+                <Card_Event/>
+
+                {/* event cards */}
+                {/*{search(events).map(event => ( // gagamit sng search filter nga function sa babaw
+                    <EventCard 
+                        key={event.eId}
+                        event={event}
+                        toggleCardContent={toggleCardContent}
+                        mouseLoc={mouseLoc}
+                        fetchData={fetchData}
+                    />
+                ))}
+
+                <div style={{marginTop: "64px"}}></div>*/}
+            </section>
         </div>
     )
 }

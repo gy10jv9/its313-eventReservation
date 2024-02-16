@@ -1,0 +1,193 @@
+.container-sideNavs {
+    padding: 1.25%;
+    width: 200px;
+    flex-direction: column;
+}
+.bttn-menu {
+    border: 1px solid black;
+    height: 32px;
+    aspect-ratio: 1/1;
+    background-size: cover;
+    background-position: center center;
+}
+.sideNavs {
+    padding: 6.5% 0 6.5% 0;
+    height: auto;
+    border-radius: 0 0 12px 12px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+.sideNavs-header {
+    padding: 6.5%;
+    min-height: 120px;
+    margin-bottom: 10px;
+    border-radius: 12px 12px 0 0;
+}
+.container-logo {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.logo-lccb {
+    width: 64px;
+    aspect-ratio: 1/1;
+    background: url("../../public/images/lccbLogo.png") center center/cover;
+}
+.sideNavs .container-txt {
+    width: 88px;
+    margin-left: 5.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.nav {
+    padding: 6.5% 13% 6.5% 13% !important;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.sideNavs h1 {
+    font-family: "Poppins SemiBold";
+    font-size: 14px;
+    margin: 0;
+    color: #0A1D40;
+}
+.sideNavs h2 {
+    font-size: 12px;
+    margin: 0;
+    color: #0A1D40;
+}
+.nav-name {
+    font-size: 14px;
+    margin: 0 0 0 10px;
+    color: #0A1D40;
+    position: relative;
+    z-index: 1;
+}
+.nav-icon {
+    position: relative;
+    z-index: 1;
+}
+.container-lightScatter {
+    height: 2px;
+    aspect-ratio: 1/1;
+    position: absolute;
+    top: 21px;
+    z-index: 0;
+}
+.lightScatter {
+    height: 200px;
+    aspect-ratio: 1/1;
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    background: radial-gradient(circle, rgba(34, 77, 157, 0.25) 0%, rgba(34, 77, 157, 0) 80%);
+    display: none;
+    border-radius: 50%;
+}
+.lightScatter2 {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    display: none;
+    border-radius: 50%;
+}
+@keyframes ls-enlarge {
+    from {
+        display: none;
+        width: 2px;
+        height: 2px;
+        background-color: #224D9D;
+        top: -1px;
+        left: -1px;
+    }
+    to {
+        display: flex;
+        width: 400px;
+        height: 400px;
+        background-color: #224D9D;
+        top: -200px;
+        left: -200px;
+    }
+}
+@keyframes ls-enlarge2 {
+    0% {
+        display: none;
+        width: 2px;
+        height: 2px;
+        background: radial-gradient(circle, rgba(34, 77, 157, 0.25) 0%, rgba(34, 77, 157, 0) 80%);
+        top: -1px;
+        left: -1px;
+    }
+    98% {
+        display: flex;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(34, 77, 157, 0.25) 0%, rgba(34, 77, 157, 0) 80%);
+        top: -200px;
+        left: -200px;
+    }
+    99% {
+        display: flex;
+    }
+    100% {
+        display: none;
+    }
+}
+@keyframes ls-disappear {
+    0% {
+        background-color: rgba(34, 77, 157, .25);
+    }
+    80% {
+        background-color: rgba(34, 77, 157, 0);
+        display: flex;
+    }
+    100% {
+        display: none;
+    }
+}
+.nav:hover .lightScatter {
+    display: flex;
+    animation: ls-enlarge2;
+    animation-duration: 0.3s;
+    animation-fill-mode: backwards;
+    animation-timing-function: ease-in-out;
+}
+.nav:hover .lightScatter2 {
+    display: flex;
+    animation: ls-enlarge;
+    animation-duration: 0.6s;
+    animation-fill-mode: backwards;
+    animation-timing-function: ease-in-out;
+}
+.nav:hover .nav-name {
+    transition-delay: 0.3s;
+    color: white;
+}
+.nav:hover {
+    transition-delay: 0.3s;
+    transition-duration: 0.3s;
+    background-color: #224D9D;
+}
+
+@media only screen and ( max-width: 576px ) {
+
+}
+@media only screen and ( max-width: 1030px ) {
+    .sideNavs h1 {
+        font-family: "Poppins SemiBold";
+        font-size: 12px;
+        margin: 0;
+        color: #0A1D40;
+    }
+    .sideNavs h2 {
+        font-size: 10px;
+        margin: 0;
+        color: #0A1D40;
+    }
+}

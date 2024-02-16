@@ -1,6 +1,5 @@
 .card.container {
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(18,64,79, 0.08);
+    border-radius: 8px;
     margin-top: 2px;
     cursor: pointer;
 }
