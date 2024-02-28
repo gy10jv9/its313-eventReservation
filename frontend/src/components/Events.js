@@ -4,8 +4,10 @@ import { Context_Global } from './Context-Global';
 import SearchBox from './SearchBox';
 import EventCard from './EventCard';
 import Card_Event from './Card-Event';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './Events.css'
+import Card_EventSample from './Card-EventSample';
+import ResrvForm_Edit2 from './ResrvForm-Edit2';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Events.css';
 
 const Events = (props, ref) => {
     const [events, setEvents] = useState([])
@@ -90,11 +92,9 @@ const Events = (props, ref) => {
     return (
         <div className='col-lg-7' id="panel-events">
             <section className='d-flex flex-row top'>
-                <button className='d-flex flex-column align-items-center justify-content-center btn shadow-none bttn-reserve'>
-                    <div className='hover-shade'></div>
-                    <img className='icon-plus' src='images/icon-plus.png'></img>
-                    <p style={{fontSize: "16px"}}> Add Reservation </p>
-                </button>
+                <ResrvForm_Edit2
+                    fetchData={fetchData}
+                />
                 <div className='container-dateTime'>
                     {/*<h1> {searchFilter.date} </h1>
                     <h2> time: {time.toLocaleTimeString()} </h2>*/}
@@ -119,10 +119,20 @@ const Events = (props, ref) => {
                     </select>
                 </div>
 
-                <Card_Event/>
-                <Card_Event/>
-                <Card_Event/>
-                <Card_Event/>
+                <Card_EventSample 
+                    toggleCardContent={toggleCardContent}
+                    fetchData={fetchData}
+                />
+
+                {search(events).map(event => ( // gagamit sng search filter nga function sa babaw
+                    <Card_Event 
+                        key={event.eId}
+                        event={event}
+                        toggleCardContent={toggleCardContent}
+                        mouseLoc={mouseLoc}
+                        fetchData={fetchData}
+                    />
+                ))}
 
                 {/* event cards */}
                 {/*{search(events).map(event => ( // gagamit sng search filter nga function sa babaw

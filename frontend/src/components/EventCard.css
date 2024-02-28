@@ -28,12 +28,13 @@
 }
 .edit-bttn {
     width: 48%;
-    background-color: #12404F;
+    background-color: #224D9D;
     border-radius: 16px;
     overflow: hidden;
     position: relative;
     padding-top: 0;
     border: none;
+    color: white;
 }
 .edit-bttn:hover {
     background-color: #12404F !important;

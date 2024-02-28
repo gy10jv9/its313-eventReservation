@@ -122,15 +122,15 @@ const ResrvForm_Edit = (props) => {
         }
     
         props.fetchData()
+        handleClose()
     };
 
     return (
         <div onMouseMove={handleMouseMove} style={{width: "48%", overflow: "hidden"}}>
             <Button variant="primary" onClick={handleShow} className='edit-bttn' style={{width: "100%", paddingBottom: "0"}}>
                 <div className='line-top'></div>
-                <p style={{position: "relative", zIndex: "2", margin: "3px 0 3px 0", padding: "0"}}> Edit Event </p>
+                <p style={{position: "relative", zIndex: "2", margin: "3px 0 3px 0", padding: "0", color: "white"}}> Edit Event </p>
                 <div className='line-bot'></div>
-                <div className="lScatter" ref={lScatter} style={{width: "300px", height: "300px", background: "radial-gradient(circle, rgba(149,198,201, 0.75) 0%, rgba(225, 225, 225, 0) 80%)"}}></div>   
             </Button> 
             <Modal show={show} onHide={handleClose} size="lg">
                 <Modal.Body>    
@@ -332,11 +332,6 @@ const ResrvForm_Edit = (props) => {
                       </div>
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                </Modal.Footer>
     </Modal>
         </div>
     )
