@@ -11,8 +11,7 @@ import {
 import stylesheet from "~/tailwind.css";
 
 export const links: LinksFunction = () => [
-	...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-	{ rel: "stylesheet", href: stylesheet },
+	...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : [{ rel: "stylesheet", href: stylesheet }]),
 ];
 
 export default function App() {
@@ -25,7 +24,16 @@ export default function App() {
 				<Links />
 			</head>
 			<body>
-				<Outlet />
+				<div className="h-screen relative">
+					<img className="h-1/2 w-screen object-cover opacity-40" src="/images/background.jpg"></img>
+
+					<div className="absolute h-full w-screen z-[1] top-0 left-0 flex justify-center items-center">
+						<div className="nav-container"> navigations </div>
+					</div>
+
+					<Outlet />
+				</div>
+
 				<ScrollRestoration />
 				<Scripts />
 				<LiveReload />
